@@ -14,6 +14,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'energia.html',
 })
 export class EnergiaPage {
-
+  MWh= '71,76';
+  MWh2= '78,24';
+  porcentaje= '92%';
 
 }

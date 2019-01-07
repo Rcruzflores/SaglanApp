@@ -3,7 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { EnergiaPage } from './energia';
 
 
-import { GraficoComponent } from '/Users/ruben/app/src/components/grafico/grafico';
+import { GraficoComponent } from '../../components/grafico/grafico';
 
 @NgModule({
   declarations: [
