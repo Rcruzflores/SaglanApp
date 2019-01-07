@@ -1,34 +1,37 @@
+// Angular
+import { NgModule, ErrorHandler, Injector } from '@angular/core'; // tslint:disable-line
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 
+// Ionic
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
+// Ionic Native
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+// App
+import { MyApp } from './app.component';
+
+// Custom components
+import { SideMenuContentComponent } from '../shared/side-menu-content/side-menu-content.component';
+
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    ListPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-  ],
+  declarations: [MyApp, SideMenuContentComponent],
+  imports: [BrowserModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    ListPage
-  ],
+  entryComponents: [MyApp],
   providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    StatusBar, SplashScreen,
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule {
+  // Make the injector to be available in the entire module
+  // so we can use it in the custom decorator
+  static injector: Injector;
+
+  constructor(injector: Injector) {
+    AppModule.injector = injector;
+  }
+}
