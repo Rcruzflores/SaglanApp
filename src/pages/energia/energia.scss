@@ -2,8 +2,9 @@ page-energia {
 
 }
 .primera_columna{
-  border-right-width: 1px;
+  border-right-width: 2px;
   border-right-style: solid;
+  border-right-color: #999999;
 }
 
 .primer_center{
@@ -28,8 +29,14 @@ page-energia {
 }
 
 .row{
+
   margin-top: 20px;
+  
 }
-.titulo_a{
-  font-size:12px;
+.titulo_a {
+
+    font-size: 11px;
+    text-align: left;
+    font-family: verdana;
+    color: #262423;
 }

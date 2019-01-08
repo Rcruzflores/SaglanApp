@@ -17,10 +17,79 @@
 
 
 <ion-content padding>
+  <!-- El título del aerogenerador-->
+  <!-- Primer columna proviene de EnergiaPage
+      titulo_a proviene de EnergiaPage
+  -->
     <ion-grid>
+      Resumen de Energía:
       <ion-row>
           <ion-col>
-            <div id={{index}}></div>
+            <div class="espacio_correcto" id={{index}}></div>
+          </ion-col>
+      </ion-row>
+      <ion-row class="espacio_div">
+          <ion-col>
+            <div class="primer_center primera_columna" >
+              <h6 class="titulo_a">Velocidad viento:</h6>
+              <h1 class="dato"><span class="tipo">{{ km }}</span></h1>
+              <h6>KM/h</h6>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="primer_center">
+              <h6 class="titulo_a">Revoluciones:</h6>
+              <h1 class="dato"><span class="tipo">{{ rpm1 }}</span></h1>
+              <h6>RMP</h6>
+            </div>
+          </ion-col>
+      </ion-row>
+      Horas de Operación último día:
+      <ion-row>
+          <ion-col>
+            <div class="primer_center primera_columna">
+              <h6>OPERACIÓN</h6>
+              <h2 class="dato"><span class="tipo">{{ operacio_hora }}</span><span>{{ operacio_horaporcentaje }}</span></h2>
+              <h5 class="titulo_fecha">HORAS</h5>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="primer_center primera_columna">
+              <h6>SERVICIO</h6>
+              <h2 class="dato"><span class="tipo">{{ servicio_hora }}</span><span>{{ servicio_horaporcentaje }}</span></h2>
+              <h5 class="titulo_fecha">HORAS</h5>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="primer_center">
+              <h6>DETENIDOS</h6>
+              <h2 class="dato"><span class="tipo">{{ detenidos_hora }}</span><span>{{ detenidos_horaporcentaje }}</span></h2>
+              <h5 class="titulo_fecha">HORAS</h5>
+            </div>
+          </ion-col>
+      </ion-row>
+      KPI's Mantenimiento:
+      <ion-row>
+          <ion-col>
+            <div class="primer_center primera_columna">
+              <h6 class="titulo_c">MTB!</h6>
+              <h6 class="dato titulo_fecha"><span class="tipo">{{ kpi_mtb }}</span></h6>
+              <h6 class="titulo_fecha">DD HH:MM:SS</h6>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="primer_center primera_columna">
+              <h6 class="titulo_c">MTBF</h6>
+              <h6 class="dato titulo_fecha"><span class="tipo">{{ kpi_mtbf }}</span></h6>
+              <h6 class="titulo_fecha">DD HH:MM:SS</h6>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="primer_center">
+              <h6 class="titulo_c">DTPF</h6>
+              <h6 class="dato titulo_fecha"><span class="tipo">{{ kpi_dtpf }}</span></h6>
+              <h6 class="titulo_fecha">DD HH:MM:SS</h6>
+            </div>
           </ion-col>
       </ion-row>
     </ion-grid>

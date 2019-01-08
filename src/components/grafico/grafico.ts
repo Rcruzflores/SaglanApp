@@ -44,7 +44,7 @@ export class GraficoComponent {
       }, TIME_IN_MS);
   }
 
-
+  // El eje y
   initSvg() {
         var container = d3.select(this.index_).append("svg");
         this.svg = container
@@ -72,6 +72,7 @@ export class GraficoComponent {
               .style("stop-opacity", 0);
 
   }
+  // el eje x
   initAxis() {
     data_gr.forEach(function(d) {
                 d.hora = new Date(d.hora);
@@ -191,8 +192,8 @@ export class GraficoComponent {
                 .attr("y1", 0)
                 .attr("y2", this.height)
                 .style('fill', 'none')
-                .style('stroke', 'rgba(246, 42, 0, 0.23)')
-                .style('stroke-width', 1)
+                .style('stroke', 'rgb(222, 156, 82)')
+                .style('stroke-width', '1.5px')
                 .style('pointer-events', 'none')
                 .style('shape-rendering', 'crispEdges')
                 .style("opacity", 0);
@@ -249,7 +250,7 @@ export class GraficoComponent {
         var tem;
             tem = "<div class='text-center container-fluid'style='border: 1px solid #EBECEC; background-color:#FCB415;width:90px;' >" +
                             "<h6 style='font-size:11px; color: white;' class='letra_D no-margin'>"+data_gr[aux].valor.toFixed(2) +"MWh</h6>" +
-                            "<h6 style='font-size:10px;' class='letra_D no-margin'>"+formatValueT(data_gr[aux].hora) +"</h6>" +
+                            "<h6 style='font-size:11px;' class='letra_D no-margin'>"+formatValueT(data_gr[aux].hora) +"</h6>" +
                         "</div>";
 
         var mouse_x = d3.mouse(this)[0];

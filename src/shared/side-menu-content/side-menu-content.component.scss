@@ -10,8 +10,8 @@ side-menu-content {
     // ------------------------------------ //
     // Hide scroll bar in the side menu     //
     // ------------------------------------ //
-    ion-menu ion-content .scroll-content::-webkit-scrollbar { 
-        display: none; 
+    ion-menu ion-content .scroll-content::-webkit-scrollbar {
+        display: none;
     }
 
     // ------------------------------------ //
@@ -28,13 +28,13 @@ side-menu-content {
         &.item.item-block {
             border-bottom: 1px solid $item-color-bg;
         }
-        
-        & [item-left], 
+
+        & [item-left],
         & [item-right] {
             margin-left: 0;
         }
 
-        & ion-icon[item-left] + .item-inner, 
+        & ion-icon[item-left] + .item-inner,
         & ion-icon[item-left] + .item-input {
         margin-left: 8px;
         }
@@ -74,11 +74,11 @@ side-menu-content {
         ion-item.item.item-block.item-ios.no-icon .item-inner {
             margin-left: 48px;
         }
-        
+
         ion-item.item.item-block.item-md.no-icon .item-inner,
         ion-item.item.item-block.item-wp.no-icon .item-inner {
             margin-left: 40px;
         }
     }
-    
+
 }

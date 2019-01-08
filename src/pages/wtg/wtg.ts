@@ -22,6 +22,21 @@ export class WtgPage {
   index = "grafico_w"+this.param.indice;
   index_ =  "#grafico_w"+this.navParams.data.indice;
 
+  km = '50';
+  rpm1 = '50';
+
+  operacio_hora= '71';
+  servicio_hora= '12';
+  detenidos_hora= '5';
+
+  operacio_horaporcentaje= ' 65%';
+  servicio_horaporcentaje= ' 20%';
+  detenidos_horaporcentaje= ' 2%';
+
+  kpi_mtb= '4 23:55:05';
+  kpi_mtbf= '3:38:21';
+  kpi_dtpf= '3:38:21';
+
   margin = {top: 55, right: 50, bottom: 20, left: 25};
   width: number;
   height: number;
@@ -99,7 +114,7 @@ export class WtgPage {
         "dateTime": "%a %b %e %X %Y",
         "date": "%d/%m/%Y",
         "time": "%H:%M:%S",
-        "periods": ["AM", "PM"],
+        "periods": [" AM", " PM"],
         "days": ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         "shortDays": ["Dom", "Lun", "Mar", "Mi", "Jue", "Vie", "Sab"],
         "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
@@ -202,8 +217,8 @@ export class WtgPage {
                 .attr("y1", 0)
                 .attr("y2", this.height)
                 .style('fill', 'none')
-                .style('stroke', 'rgba(246, 42, 0, 0.23)')
-                .style('stroke-width', 1)
+                .style('stroke', 'rgba(222, 156, 82)')
+                .style('stroke-width', '1.5px')
                 .style('pointer-events', 'none')
                 .style('shape-rendering', 'crispEdges')
                 .style("opacity", 0);
@@ -259,7 +274,7 @@ export class WtgPage {
               .attr("transform", "translate(" + d3.mouse(this)[0] + ")");
         var tem;
             tem = "<div class='text-center container-fluid'style='border: 1px solid #EBECEC; background-color:#fff;width:90px;' >" +
-                            "<h6 style='font-size:11px;' class='letra_D no-margin'>"+data_gr[aux].valor.toFixed(2) +"MWh</h6>" +
+                            "<h6 style='font-size:11px;' class='letra_D no-margin'>"+data_gr[aux].valor.toFixed(2) +" MWh</h6>" +
                             "<h6 style='font-size:11px;' class='letra_D no-margin'>"+formatValueT(data_gr[aux].hora) +"</h6>" +
                         "</div>";
 
