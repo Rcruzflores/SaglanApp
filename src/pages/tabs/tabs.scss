@@ -1,3 +1,68 @@
 page-tabs {
 
 }
+.toolbar-background-md {
+
+   border-color: #fff !important;
+   background: #fff !important;
+
+}
+.tabs-md .tabbar {
+
+   background: #fff !important;
+
+}
+
+/*Toogler coloca un estilo a todos botones tanto IOS y andriod */
+.bar-button-default-md,
+.bar-button-clear-md-default,
+.bar-button-md-default,
+.bar-buttons-ios,
+.bar-button-default-ios,
+.bar-button-default.bar-button-ios-default,
+.bar-button-clear-ios-default {
+    color: #838383 !important;
+    background-color: transparent !important;
+}
+
+.toolbar-background-md, .toolbar-background, .toolbar-background-ios {
+
+    border-color: #fff !important;
+    background: #dee2e6 !important;
+
+}
+/*.tabs-md .tab-button-text {
+
+    font-size: 1.4rem;
+
+}*/
+/*Color menú IOS y Android*/
+.tabs-md .tab-button[aria-selected=true],
+.tabs-ios .tab-button:hover:not(.disable-hover), .tabs-ios .tab-button[aria-selected="true"] {
+
+    color: #666;
+    padding: 0;
+
+}
+
+/* Estilo para título navar tanto para IOS como Android*/
+.toolbar-title-md,
+.toolbar-title-ios {
+
+    color: #666 !important;
+
+}
+.toolbar-title-ios {
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 600;
+    pointer-events: auto;
+}
+.tabs-md .tab-button[aria-selected="true"], .tabs-ios .tab-button:hover:not(.disable-hover), .tabs-ios .tab-button[aria-selected="true"]{
+  border-bottom-style: solid;
+  border-bottom-color: #FCB415;
+  border-bottom-width: 3px;
+}
+.ion-buttons[start] {
+  order: 2;
+}

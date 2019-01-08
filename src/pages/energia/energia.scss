@@ -9,3 +9,27 @@ page-energia {
 .primer_center{
   text-align: center;
 }
+.nav-link:hover{
+  color: #838383 !important;
+}
+.nav-link.active{
+  color: #616161 !important;
+  border-bottom: 2px solid rgb(255, 171, 0) !important;
+}
+
+.titulo{
+  color:#4d5e67;
+}
+.titulo_w{
+  color:#464f55;
+}
+.dato{
+  color:#313c41;
+}
+
+.row{
+  margin-top: 20px;
+}
+.titulo_a{
+  font-size:12px;
+}

@@ -17,6 +17,16 @@ import * as d3 from 'd3';
   templateUrl: 'aerogenerador.html',
 })
 export class AerogeneradorPage {
+  //Las variables que se visualiza en el interfaz
+  operacion= 71;
+  servicio= 12;
+  detenidos= 8;
+  sin_comunicacion= 5;
+
+  operacion_porcentaje= ' (65%)';
+  servicio_porcentaje= ' (20%)';
+  detenidos_porcentaje= ' (10%)';
+  sin_comunicacion_porcentaje= ' (2%)';
 
   margin = {top: 20, right: 20, bottom: 30, left: 50};
   width: number;

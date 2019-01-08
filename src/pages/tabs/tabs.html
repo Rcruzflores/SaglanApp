@@ -6,17 +6,23 @@
 -->
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>{{titulo}}</ion-title>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title center text-center>{{titulo}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only end>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content>
-  <ion-tabs tabsPlacement="top">
+  <ion-tabs tabsPlacement="top" class="margen">
       <ion-tab tabTitle="Energía" [root]="tab1"></ion-tab>
       <ion-tab tabTitle="Aerogenerador" [root]="tab2"></ion-tab>
   </ion-tabs>
