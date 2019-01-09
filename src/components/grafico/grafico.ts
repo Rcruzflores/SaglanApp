@@ -204,7 +204,7 @@ export class GraficoComponent {
                 .attr("id", "tooltip")
                 .attr("class", "tooltip")
                 .style("opacity", 0);
-
+    //funciones de tooltip
      var tipBox = this.svg.append('rect')
                 .attr('width', this.width)
                 .attr('height', this.height)
@@ -234,7 +234,7 @@ export class GraficoComponent {
                     d.hora = new Date(d.hora);
                     d.valor = +d.valor;
               });
-
+              //Doble for
         data_gr.forEach(function(d) {
                 d.hora = new Date(d.hora);
                 d.valor = +d.valor;
@@ -248,9 +248,9 @@ export class GraficoComponent {
         line.style("opacity", 1)
               .attr("transform", "translate(" + d3.mouse(this)[0] + ")");
         var tem;
-            tem = "<div class='text-center container-fluid'style='border: 1px solid #EBECEC; background-color:#FCB415;width:90px;' >" +
-                            "<h6 style='font-size:11px; color: white;' class='letra_D no-margin'>"+data_gr[aux].valor.toFixed(2) +"MWh</h6>" +
-                            "<h6 style='font-size:11px;' class='letra_D no-margin'>"+formatValueT(data_gr[aux].hora) +"</h6>" +
+            tem = "<div class='text-center container-fluid'style='box-shadow: 2px 2px 5px #999; background-color:#FCB415;width:90px;' >" +
+                            "<p style='font-size:11px; color: white; font-weight: bold;' class='letra_D no-margin'>"+data_gr[aux].valor.toFixed(2) +" MWh</p>" +
+                            "<p style='font-size:11px; font-weight: bold;' class='letra_D no-margin'>"+formatValueT(data_gr[aux].hora) +"</p>" +
                         "</div>";
 
         var mouse_x = d3.mouse(this)[0];

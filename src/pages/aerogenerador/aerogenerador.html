@@ -8,37 +8,37 @@
 
   <ion-grid>
       <p class="titulo_left">Resumen de Estado:</p>
-      <ion-row class="primer_center">
-          <ion-col class="primera_columna">
+      <ion-row class="espacio_row">
+          <ion-col class="primera_columna primer_center">
             <div>
-              <h6 class="titulo_a">OPERACIÓN</h6>
-              <h2 class="dato"><span class="tipo">{{ operacion }}</span><span class="porcentaje_valor">{{ operacion_porcentaje }}</span></h2>
+              <p class="titulo_a">OPERACIÓN</p>
+              <h1><span class="tipo numero_mwh">{{ operacion }}</span><span class="porcentaje_valor">{{ operacion_porcentaje }}</span></h1>
             </div>
           </ion-col>
-          <ion-col>
+          <ion-col class="primer_center">
             <div>
-              <h6 class="titulo_a">SERVICIOS</h6>
-              <h2 class="dato"><span class="tipo">{{ servicio }}</span><span class="porcentaje_valor">{{ servicio_porcentaje }}</span></h2>
+              <p class="titulo_a">SERVICIOS</p>
+              <h2 class="dato"><span class="tipo numero_mwh">{{ servicio }}</span><span class="porcentaje_valor">{{ servicio_porcentaje }}</span></h2>
 
             </div>
           </ion-col>
       </ion-row>
-      <ion-row class="primer_center">
-          <ion-col class="primera_columna">
+      <ion-row class="espacio_row">
+          <ion-col class="primera_columna primer_center">
             <div>
-              <h6 class="titulo_a">DETENIDOS</h6>
-              <h2 class="dato"><span class="tipo">{{ detenidos }}</span><span class="porcentaje_valor">{{ detenidos_porcentaje }}</span></h2>
+              <p class="titulo_a">DETENIDOS</p>
+              <h2 class="dato"><span class="tipo numero_mwh">{{ detenidos }}</span><span class="porcentaje_valor">{{ detenidos_porcentaje }}</span></h2>
             </div>
           </ion-col>
-          <ion-col>
+          <ion-col class="primer_center">
             <div>
-              <h6 class="titulo_a">SIN COMUNICACIÓN</h6>
-              <h2 class="dato"><span class="tipo">{{ sin_comunicacion }}</span><span class="porcentaje_valor">{{ sin_comunicacion_porcentaje }}</span></h2>
+              <p class="titulo_a espacio_regu">SIN COMUNICACIÓN</p>
+              <h2 class="dato"><span class="tipo numero_mwh">{{ sin_comunicacion }}</span><span class="porcentaje_valor">{{ sin_comunicacion_porcentaje }}</span></h2>
             </div>
           </ion-col>
       </ion-row>
-      <p class="titulo_left">Resumen Porcentual:</p> 
-      <ion-row>
+      <p class="titulo_left">Resumen Porcentual:</p>
+      <ion-row id="espacio_pie">
           <ion-col id="pieChart">
           </ion-col>
       </ion-row>

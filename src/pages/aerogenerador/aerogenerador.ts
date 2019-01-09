@@ -27,8 +27,11 @@ export class AerogeneradorPage {
   servicio_porcentaje= ' (20%)';
   detenidos_porcentaje= ' (10%)';
   sin_comunicacion_porcentaje= ' (2%)';
+  // fin de las variables de visualización
 
-  margin = {top: 20, right: 20, bottom: 30, left: 50};
+  // Cambie el top de 20 a 100 para visualizar más grande el pieChart
+
+  margin = {top: 100, right: 20, bottom: 30, left: 50};
   width: number;
   height: number;
   radius: number;
@@ -143,5 +146,6 @@ export class AerogeneradorPage {
             })
             .style('fill', '#0A77B6');
   }
+
 
 }

@@ -2,10 +2,13 @@ page-aerogenerador {
 
 }
 .titulo_a{
-  font-size:12px;
+  font-size: 11px !important;
+  text-align: center !important;
+  font-family: Roboto !important;
+  color: #838383 !important;
 }
 .primer_center{
-  text-align: center;
+  text-align: center !important;
 }
 
 .porcentaje_valor{
@@ -13,11 +16,24 @@ page-aerogenerador {
   font-size: 20px;
 }
 
-.row {
-    margin-top: 10px;
-    padding-bottom: 10px;
-}
 //Mover arriba el contenido del energía, para así ajustar las areas.
 .scroll-content{
   padding-top: 0px !important;
+}
+// Mover el d3 pie
+#pieChart{
+  top: -40px;
+}
+//Mover arriva el pie para ajustar espacio sobrante
+#espacio_pie{
+  margin-top: 0px;
+}
+
+.numero_mwh{
+  font-size: 34px;
+  font-family: Roboto !important;
+}
+
+.espacio_regu{
+  margin-top: 0px;
 }

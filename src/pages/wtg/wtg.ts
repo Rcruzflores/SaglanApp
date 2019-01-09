@@ -273,9 +273,9 @@ export class WtgPage {
         line.style("opacity", 1)
               .attr("transform", "translate(" + d3.mouse(this)[0] + ")");
         var tem;
-            tem = "<div class='text-center container-fluid'style='border: 1px solid #EBECEC; background-color:#fff;width:90px;' >" +
-                            "<h6 style='font-size:11px;' class='letra_D no-margin'>"+data_gr[aux].valor.toFixed(2) +" MWh</h6>" +
-                            "<h6 style='font-size:11px;' class='letra_D no-margin'>"+formatValueT(data_gr[aux].hora) +"</h6>" +
+            tem = "<div class='text-center container-fluid'style='box-shadow: 2px 2px 5px #999; background-color:#FCB415;width:90px;' >" +
+                            "<p style='font-size:11px; color: white; font-weight: bold;' class='letra_D no-margin'>"+data_gr[aux].valor.toFixed(2) +" MWh</p>" +
+                            "<p style='font-size:11px; font-weight: bold;' class='letra_D no-margin'>"+formatValueT(data_gr[aux].hora) +"</p>" +
                         "</div>";
 
         var mouse_x = d3.mouse(this)[0];
