@@ -46,18 +46,7 @@ page-tabs {
 }
 
 /* Estilo para título navar tanto para IOS como Android*/
-.toolbar-title-md,
-.toolbar-title-ios {
 
-    color: #666 !important;
-
-}
-.toolbar-title-ios {
-    text-align: center;
-    font-size: 1.7rem;
-    font-weight: 600;
-    pointer-events: auto;
-}
 .tabs-md .tab-button[aria-selected="true"], .tabs-ios .tab-button:hover:not(.disable-hover), .tabs-ios .tab-button[aria-selected="true"]{
   border-bottom-style: solid;
   border-bottom-color: #FCB415;
@@ -65,4 +54,27 @@ page-tabs {
 }
 .ion-buttons[start] {
   order: 2;
+}
+
+//El ajuste del titulo navar para ambas plataformas;
+.titulo_nav{
+  padding-right: 30px !important;
+  padding-left: 43px !important;
+  text-align: center !important;
+  font-size: 18px !important;
+}
+.toolbar-title-md{
+
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  text-align: center !important;
+  font-size: 18px !important;
+
+}
+
+.toolbar-title-md,
+.toolbar-title-ios {
+
+    color: #666 !important;
+
 }

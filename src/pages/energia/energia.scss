@@ -1,10 +1,11 @@
 page-energia {
 
 }
+//margen de la sepación de lineas
 .primera_columna{
   border-right-width: 2px;
   border-right-style: solid;
-  border-right-color: #999999;
+  border-right-color: #B4B4B4;
 }
 
 .primer_center{
@@ -31,12 +32,34 @@ page-energia {
 .row{
 
   margin-top: 20px;
-  
+
 }
 .titulo_a {
 
     font-size: 11px;
-    text-align: left;
-    font-family: verdana;
-    color: #262423;
+    text-align: center;
+    font-family: Roboto;
+    color: #838383;
+}
+
+//Mover arriba el contenido del energía, para así ajustar las areas.
+.scroll-content{
+  padding-top: 0px !important;
+}
+
+//Mover la fila de actual, posible y utilización para ajustar el espacio de area.
+.espacio_row{
+  margin-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.titulo_left{
+  font-family: Roboto;
+  text-align: left;
+  color: #838383;
+}
+
+
+.tab-button-text{
+  font-size: 13px !important;
 }

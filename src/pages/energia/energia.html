@@ -6,31 +6,30 @@
 -->
 <ion-content padding>
     <ion-grid>
-      <p>Resumen de Energía:</p>
-
-      <ion-row>
+      <p class="titulo_left">Resumen de Energía:</p>
+      <ion-row class="espacio_row">
           <ion-col class="primera_columna">
             <div class="primer_center">
-              <h6 class="titulo_a">Actúal</h6>
+              <p class="titulo_a">ACTUAL</p>
               <h2 class="dato"><span class="tipo">{{ MWh }}</span></h2>
-              <h6>MWh</h6>
+              <p class="titulo_a">MWh</p>
             </div>
           </ion-col>
           <ion-col class="primera_columna">
             <div class="primer_center">
-              <h6 class="titulo_a">Posible</h6>
+              <p class="titulo_a">POSIBLE</p>
               <h2 class="dato"><span class="tipo">{{ MWh2 }}</span></h2>
-              <h6>MWh</h6>
+              <p class="titulo_a">MWh</p>
             </div>
           </ion-col>
           <ion-col>
             <div class="primer_center">
-              <h6 class="titulo_a">Utilización</h6>
+              <p class="titulo_a">UTILIZACIÓN</p>
               <h2 class="dato"><span class="tipo">{{ porcentaje }}</span></h2>
             </div>
           </ion-col>
       </ion-row>
-      Últimas 6 horas:
+      <p class="titulo_left">Últimas 6 horas:</p>
       <ion-row>
         <ion-col>
           <grafico></grafico>
