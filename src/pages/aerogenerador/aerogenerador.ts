@@ -38,6 +38,7 @@ export class AerogeneradorPage {
   sum: number;
 
   arc: any;
+  arcPath: any;
   labelArc: any;
   pie: any;
   color: any;
@@ -52,6 +53,7 @@ export class AerogeneradorPage {
   ngOnInit() {
       this.initSvg();
       this.drawPie();
+      this.dragOthers();
   }
   initSvg() {
 
@@ -95,13 +97,13 @@ export class AerogeneradorPage {
             .data(this.pie(data))
             .enter().append("g")
             .attr("class", "arc");
-        var arcPath = arcGroup.append("path").attr("d",this.arc)
+        this.arcPath = arcGroup.append("path").attr("d",this.arc)
             .style("fill", function (d) {
                 return d.data.color;
             });
 
         var aux_arc = this.arc;
-        arcPath.transition().delay(function(d, i) {
+        this.arcPath.transition().delay(function(d, i) {
                 return i * 500;
             })
             .duration(500)
@@ -146,6 +148,11 @@ export class AerogeneradorPage {
             })
             .style('fill', '#0A77B6');
   }
+  dragOthers(){
 
+            this.arcPath.on('mouseover', function(d) {
+                console.log(d.value);
+            });
+  }
 
 }
