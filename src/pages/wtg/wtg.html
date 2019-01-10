@@ -22,7 +22,7 @@
       titulo_a proviene de EnergiaPage
   -->
     <ion-grid>
-      Resumen de Energía:
+      <p class="titulo_left">Resumen de Energía:</p>
       <ion-row>
           <ion-col>
             <div class="espacio_correcto" id={{index}}></div>
@@ -30,45 +30,45 @@
       </ion-row>
       <ion-row class="espacio_div">
           <ion-col>
-            <div class="primer_center primera_columna" >
-              <h6 class="titulo_a">Velocidad viento:</h6>
-              <h1 class="dato"><span class="tipo">{{ km }}</span></h1>
-              <h6>KM/h</h6>
+            <div class="primera_columna" >
+              <p class="titulo_left">Velocidad viento:</p>
+              <h1 class="dato primer_center"><span class="tipo">{{ km }}</span></h1>
+              <h6 class="titulo_a ajuste_mwh">KM/h</h6>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div>
+              <p class="titulo_left">Revoluciones:</p>
+              <h1 class="dato primer_center"><span class="tipo">{{ rpm1 }}</span></h1>
+              <h6 class="titulo_a ajuste_mwh">RMP</h6>
+            </div>
+          </ion-col>
+      </ion-row>
+      <p class="titulo_left">Horas de Operación último día:</p>
+      <ion-row class="ajuste_espacio2">
+          <ion-col>
+            <div class="primer_center primera_columna">
+              <p class="titulo_a ajuste_espacio" >OPERACIÓN</p>
+              <h2 class="dato"><span class="tipo">{{ operacio_hora }}</span><span class="porcentaje_valor">({{ operacio_horaporcentaje }})</span></h2>
+              <h5 class="titulo_a ajuste_mwh">HORAS</h5>
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="primer_center primera_columna">
+              <p  class="titulo_a ajuste_espacio">SERVICIO</p>
+              <h2 class="dato"><span class="tipo">{{ servicio_hora }}</span><span class="porcentaje_valor">({{ servicio_horaporcentaje }})</span></h2>
+              <h5 class="titulo_a ajuste_mwh">HORAS</h5>
             </div>
           </ion-col>
           <ion-col>
             <div class="primer_center">
-              <h6 class="titulo_a">Revoluciones:</h6>
-              <h1 class="dato"><span class="tipo">{{ rpm1 }}</span></h1>
-              <h6>RMP</h6>
+              <p class="titulo_a ajuste_espacio">DETENIDOS</p>
+              <h2 class="dato"><span class="tipo">{{ detenidos_hora }}</span><span class="porcentaje_valor">({{ detenidos_horaporcentaje }})</span></h2>
+              <h5 class="titulo_a ajuste_mwh">HORAS</h5>
             </div>
           </ion-col>
       </ion-row>
-      Horas de Operación último día:
-      <ion-row>
-          <ion-col>
-            <div class="primer_center primera_columna">
-              <h6>OPERACIÓN</h6>
-              <h2 class="dato"><span class="tipo">{{ operacio_hora }}</span><span>{{ operacio_horaporcentaje }}</span></h2>
-              <h5 class="titulo_fecha">HORAS</h5>
-            </div>
-          </ion-col>
-          <ion-col>
-            <div class="primer_center primera_columna">
-              <h6>SERVICIO</h6>
-              <h2 class="dato"><span class="tipo">{{ servicio_hora }}</span><span>{{ servicio_horaporcentaje }}</span></h2>
-              <h5 class="titulo_fecha">HORAS</h5>
-            </div>
-          </ion-col>
-          <ion-col>
-            <div class="primer_center">
-              <h6>DETENIDOS</h6>
-              <h2 class="dato"><span class="tipo">{{ detenidos_hora }}</span><span>{{ detenidos_horaporcentaje }}</span></h2>
-              <h5 class="titulo_fecha">HORAS</h5>
-            </div>
-          </ion-col>
-      </ion-row>
-      KPI's Mantenimiento:
+      <p class="titulo_left">KPI's Mantenimiento:</p>
       <ion-row>
           <ion-col>
             <div class="primer_center primera_columna">
