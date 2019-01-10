@@ -151,39 +151,4 @@ export class AerogeneradorPage {
             .style('fill', '#0A77B6');
   }
 
-  drawOtro(){
-        //Se coloca y se genera el dato
-        var div_ = d3.select("#pieChart")
-                  .append("div")
-                  .attr("id", "tooltip")
-                  .attr("class", "tooltip")
-                  .style("opacity", 0)
-                  .style("display","none");
-
-        //Inicializa el tooltip
-        var tipBox = this.svg.append('rect')
-                   .attr('width', this.width)
-                   .attr('height', this.height)
-                   .attr('opacity', 0)
-                   .on('mouseover', drawTooltip);
-
-
-        function removeTooltip() {
-            var div_t = d3.select('#tooltip')
-                      .transition()
-                      .duration(1500)
-                      .style("opacity", 0)
-                      .style("display", "block");
-
-            var line = d3.select("#h-line-").style("opacity", 0);
-        };
-
-        function drawTooltip(){
-          //Obtiene los datos del data;
-          var div_3 = d3.select('#tooltip');
-
-          };
-
-  }
-
 }
