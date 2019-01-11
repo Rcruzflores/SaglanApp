@@ -58,13 +58,8 @@ page-tabs {
 }
 
 //El ajuste del titulo navar para ambas plataformas;
-.titulo_nav{
-  padding-right: 30px !important;
-  padding-left: 43px !important;
-  text-align: center !important;
-  font-size: 18px !important;
-}
-.toolbar-title-md{
+.toolbar-title-md,
+.toolbar-title-ios{
 
   padding-left: 0px !important;
   padding-right: 0px !important;
@@ -81,7 +76,8 @@ page-tabs {
 }
 
 .bottonios{
-  width: 50px !important;
-  height: 38px !important;
+  width: 63px !important;
+  height: 36px !important;
   margin-left: -3px !important;
+  margin-right: 0px !important;
 }
