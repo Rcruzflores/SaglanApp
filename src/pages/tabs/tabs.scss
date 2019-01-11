@@ -45,7 +45,7 @@ page-tabs {
 
 }
 
-/* Estilo para título navar tanto para IOS como Android*/
+/* Estilo para título opción energia y aerogenerador, tanto para IOS como Android*/
 
 .tabs-md .tab-button[aria-selected="true"], .tabs-ios .tab-button:hover:not(.disable-hover), .tabs-ios .tab-button[aria-selected="true"]{
   border-bottom-style: solid;
@@ -57,16 +57,15 @@ page-tabs {
   order: 2;
 }
 
-//El ajuste del titulo navar para ambas plataformas;
-.toolbar-title-md,
-.toolbar-title-ios{
+/*El ajuste del titulo navar para ambas plataformas;
+.toolbar-title-md{
 
   padding-left: 0px !important;
   padding-right: 0px !important;
   text-align: center !important;
   font-size: 18px !important;
 
-}
+}*/
 
 .toolbar-title-md,
 .toolbar-title-ios {
@@ -75,6 +74,7 @@ page-tabs {
 
 }
 
+//button menu to press aerogenerador
 .bottonios{
   width: 63px !important;
   height: 36px !important;

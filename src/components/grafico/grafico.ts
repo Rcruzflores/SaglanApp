@@ -50,7 +50,7 @@ export class GraficoComponent {
         this.svg = container
             .attr("width", '100%')
             .attr("height", '100%')
-            .attr('viewBox','0 0 400 300')
+            .attr('viewBox','5 10 339 310')
             .append("g")
             .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
@@ -63,7 +63,7 @@ export class GraficoComponent {
               .attr("y2", "100%");
             lg.append("stop")
               .attr("offset", "0%")
-              .style("stop-color", "#628da9")
+              .style("stop-color", "#B4B4B4")
               .style("stop-opacity", 0.5);
 
             lg.append("stop")
@@ -130,7 +130,7 @@ export class GraficoComponent {
         .attr("class", "line")
         .attr("d", this.line)
         .style ("fill", "none")
-        .style ("stroke", "#729fb5")
+        .style ("stroke", "rgb(205, 205, 205)")
         .style ("stroke-width", "2px");
   }
   drawArea() {
@@ -175,17 +175,27 @@ export class GraficoComponent {
             )
   }
   drawOthers(){
-     this.svg.append("circle")
-        .attr("class","puntero")
-        .attr("r", 3.5)
-        .attr("id", "dot_1")
-        .style("fill", "#fff")
-        .style("stroke", "#f62a00")
-        .style("stroke-width", 2)
-        .style("opacity", 0);
+    //puntero
+    /*var puntero = this.svg.append("circle")
+                          .attr("class","puntero")
+                          .attr("r", 3.5)
+                          .attr("id", "dot_1")
+                          .style("fill", "#fff")
+                          .style("stroke", "#f62a00")
+                          .style("stroke-width", 2)
+                          .style("opacity", 0);
+    */
+     var simplePoint = d3.selectAll("g")
+                         .append("circle")
+                         .attr("cx", 5)
+                         .attr("cy", 5)
+                         .attr("r", 5)
+                         .style("fill", "#FCB415");
+
 
      var hoverLineGroup = this.svg.append("g")
                 .attr("id", "hover-line-");
+                
      var hoverLine = hoverLineGroup
                 .append("line")
                 .attr("id", "h-line-")
@@ -248,8 +258,8 @@ export class GraficoComponent {
         line.style("opacity", 1)
               .attr("transform", "translate(" + d3.mouse(this)[0] + ")");
         var tem;
-            tem = "<div class='text-center container-fluid'style='box-shadow: 5px 5px 10px #999; background-color:#FCB415;width:90px; height:48px;' >" +
-                            "<p class='letra_D no-margin'><span style='font-size:11px; color: white; font-weight: bold;'>"+data_gr[aux].valor.toFixed(2) +" MWh</span><br><span style='font-size:10px; font-weight: bold;'>"+formatValueT(data_gr[aux].hora) +"</span></p>" +
+            tem = "<div class='text-center letra_D container-fluid'style='box-shadow: 5px 5px 10px #999; background-color:#FCB415;width:90px; height:48px;' >" +
+                            "<p class='content-center no-margin'><span style='font-size:12px; color: white; font-weight: bold;'>"+data_gr[aux].valor.toFixed(2) +" MWh</span><br><span style='font-size:11px; font-weight: bold;'>"+formatValueT(data_gr[aux].hora) +"</span></p>" +
                         "</div>";
 
         var mouse_x = d3.mouse(this)[0];

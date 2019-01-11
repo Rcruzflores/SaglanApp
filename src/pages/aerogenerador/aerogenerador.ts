@@ -31,7 +31,7 @@ export class AerogeneradorPage {
 
   // Cambie el top de 20 a 100 para visualizar más grande el pieChart
 
-  margin = {top: 100, right: 20, bottom: 30, left: 50};
+  margin = {top: 50, right: 20, bottom: 30, left: 50};
   width: number;
   height: number;
   radius: number;
@@ -149,33 +149,16 @@ export class AerogeneradorPage {
             .style('fill', '#0A77B6');
   }
   drawOthers(){
-        var div_ = d3.select("#pieChart")
-                  .append("div")
-                  .attr("id", "tooltip2")
-                  .attr("class", "tooltip")
-                  .style("opacity", 0);
+      /*
+      * this.arcPath.on('mouseover', function(d) {
+      *
+      */
+      var div_4;
+      this.arcPath.on('mouseover', function(d){
+           div_4 = d3.select('#pieChart');
 
-        var div_3 = d3.select('#tooltip2');
-        var tem;
+      });
 
-        this.arcPath.on('mouseover', function(d) {
-                  tem = "<div class='text-center container-fluid'style='box-shadow: 2px 2px 5px #999; background-color:#FCB415;width:90px;' >" +
-                          "<p style='font-size:11px; color: white; font-weight: bold;' class='letra_D no-margin'>"+d.data.status +"</p>" +
-                          "<p style='font-size:11px; font-weight: bold;' class='letra_D no-margin'>"+d.value +" %</p>" +
-                      "</div>";
-                      var mouse_x = d3.mouse(this)[0];
-                        div_3.style('display','block');
-                        div_3.transition()
-                            .duration(500)
-                            .style("opacity", 0);
-                        div_3.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        div_3.html(tem)
-                        .style("position","absolute")
-                        .style("left", mouse_x + "px")
-                        .style("top", d3.mouse(this)[1] - 50 + "px");
-                   });
 
   }
 }

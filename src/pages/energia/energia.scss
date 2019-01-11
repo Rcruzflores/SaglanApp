@@ -40,6 +40,7 @@ page-energia {
     text-align: center;
     font-family: Roboto;
     color: #838383;
+    font-weight: 500;
 }
 
 //Mover arriba el contenido del energía, para así ajustar las areas.
@@ -57,6 +58,7 @@ page-energia {
   font-family: Roboto;
   text-align: left;
   color: #838383;
+  font-weight: 400;
 }
 
 
@@ -71,4 +73,10 @@ page-energia {
 
 .ajuste_mwh{
   margin-top: -8px !important;
+}
+
+.espacio_grid{
+
+  margin-bottom: -30px;
+
 }

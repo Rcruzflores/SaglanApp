@@ -1,5 +1,11 @@
 page-aerogenerador {
+  h2{
+    margin-top: -1rem;
+  }
 
+  .d3-donut{
+    margin-bottom: -100px;
+  }
 }
 .titulo_a{
   font-size: 11px !important;
@@ -22,7 +28,7 @@ page-aerogenerador {
 }
 // Mover el d3 pie
 #pieChart{
-  top: -40px;
+  top: -50px;
 }
 //Mover arriva el pie para ajustar espacio sobrante
 #espacio_pie{

@@ -1,16 +1,17 @@
 page-wtg {
 .ajuste_espacio2{
-  margin-top: -5px;
+  margin-top: -18px !important;
 }
 }
 //Color de KPIs
 .titulo_c{
   color: #FCB415;
   font-size: smaller;
+  margin-bottom: -14px;
 }
 //Color de fecha del kpis
 .titulo_fecha{
-  font-size: smaller;
+  font-size: 14px;
 }
 
 //Margen de espacio para disminuir el espacio del gráfico los datos
@@ -20,4 +21,16 @@ page-wtg {
 
 .espacio_correcto{
   margin-top: -50px;
+}
+
+// center_kpi es ajuste del espacio
+.center_kpi{
+
+  margin-top: 0px;
+  margin-bottom: 30px;
+
+}
+
+.pocentaje_wtg{
+  font-size: 14px;
 }
