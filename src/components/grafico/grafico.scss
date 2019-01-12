@@ -26,8 +26,14 @@ grafico {
 }
 
 .grid > g >text{
-  
+
   font-weight: bold;
+  font-family: Roboto;
   color: #B4B4B4;
 
 }
+ g.axis.axis--x g.tick text{
+   font-weight: bold;
+   font-family: Roboto;
+   color: #B4B4B4;
+ }

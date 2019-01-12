@@ -3,9 +3,12 @@ page-energia {
 }
 //margen de la sepación de lineas
 .primera_columna{
-  border-right-width: 2px;
+  border-right-width: 1px;
   border-right-style: solid;
   border-right-color: #B4B4B4;
+  border-left-width: 1px;
+  border-left-style: solid;
+  border-left-color: #B4B4B4;
 }
 
 .primer_center{
@@ -34,14 +37,6 @@ page-energia {
   margin-top: 20px;
 
 }
-.titulo_a {
-
-    font-size: 11px;
-    text-align: center;
-    font-family: Roboto;
-    color: #838383;
-    font-weight: 500;
-}
 
 //Mover arriba el contenido del energía, para así ajustar las areas.
 .scroll-content{
@@ -55,10 +50,11 @@ page-energia {
 }
 
 .titulo_left{
-  font-family: Roboto;
-  text-align: left;
-  color: #838383;
-  font-weight: 400;
+  font-family: Roboto !important;
+  text-align: left !important;
+  color: #838383 !important;
+  font-weight: 600 !important;
+  padding-left: 15px !important;
 }
 
 
@@ -79,4 +75,10 @@ page-energia {
 
   margin-bottom: -30px;
 
+}
+//Los card o panel width
+.card{
+  width: auto !important;
+  margin-left: -20px !important;
+  margin-right: -20px !important;
 }

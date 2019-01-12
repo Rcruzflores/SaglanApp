@@ -1,8 +1,19 @@
 page-wtg {
-.ajuste_espacio2{
-  margin-top: -18px !important;
+  .ajuste_espacio2{
+    margin-top: 20px !important;
+
+  }
+  //Margen para los números KMh y RPM
+  .margen_data{
+    margin-top: -1rem;
+  }
+  //Margen de espacio para disminuir el espacio del gráfico los datos
+  .espacio_div{
+    margin-top: -10px;
+    margin-bottom: -21px;
+  }
 }
-}
+
 //Color de KPIs
 .titulo_c{
   color: #FCB415;
@@ -12,11 +23,6 @@ page-wtg {
 //Color de fecha del kpis
 .titulo_fecha{
   font-size: 14px;
-}
-
-//Margen de espacio para disminuir el espacio del gráfico los datos
-.espacio_div{
-  margin-top: -10px;
 }
 
 .espacio_correcto{
@@ -31,6 +37,10 @@ page-wtg {
 
 }
 
+//Fuente del porcentaje del wtg
 .pocentaje_wtg{
   font-size: 14px;
+  color: #838383;
+  font-family: Roboto;
+  font-weight: 400;
 }

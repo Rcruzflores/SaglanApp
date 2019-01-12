@@ -31,7 +31,7 @@ export class AerogeneradorPage {
 
   // Cambie el top de 20 a 100 para visualizar más grande el pieChart
 
-  margin = {top: 50, right: 20, bottom: 30, left: 50};
+  margin = {top: 100, right: 20, bottom: 30, left: 50};
   width: number;
   height: number;
   radius: number;
@@ -149,16 +149,11 @@ export class AerogeneradorPage {
             .style('fill', '#0A77B6');
   }
   drawOthers(){
-      /*
-      * this.arcPath.on('mouseover', function(d) {
-      *
-      */
-      var div_4;
-      this.arcPath.on('mouseover', function(d){
-           div_4 = d3.select('#pieChart');
-
-      });
-
-
+    /*
+    * this.arcPath.on('mouseover', function(d) {
+    */
+    this.arcPath.on('mouseover', function(d){
+      console.log(d.value);
+    });
   }
 }

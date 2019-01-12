@@ -35,13 +35,16 @@ side-menu-content {
     // ------------------
     ion-item.item.item-block.sub-option {
         background-color: #fff;
-        color: #222;
+        font-family: Roboto !important; // Fuente del roboto de la lista Side Menu
+        font-weight: 400 !important; // Editado para colocar negrita en la lista Side Menu
+        color: #838383 !important; // Editado
 
         &.active-side-menu-option {
             color: $active-color;
-            font-weight: 700;            
+            font-weight: 700;
         }
     }
+html body ion-app.app-root.app-root-md.md.platform-core.enable-hover ng-component.app-root ion-menu.menu-enabled.show-menu div.menu-inner ion-content.content.content-md div.scroll-content side-menu-content ion-list.list.list-md ion-list.accordion-menu.list.list-md{
+      margin-top: 75px;
+    }
 }
-
-

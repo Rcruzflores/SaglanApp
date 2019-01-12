@@ -195,7 +195,7 @@ export class GraficoComponent {
 
      var hoverLineGroup = this.svg.append("g")
                 .attr("id", "hover-line-");
-                
+
      var hoverLine = hoverLineGroup
                 .append("line")
                 .attr("id", "h-line-")
@@ -259,7 +259,7 @@ export class GraficoComponent {
               .attr("transform", "translate(" + d3.mouse(this)[0] + ")");
         var tem;
             tem = "<div class='text-center letra_D container-fluid'style='box-shadow: 5px 5px 10px #999; background-color:#FCB415;width:90px; height:48px;' >" +
-                            "<p class='content-center no-margin'><span style='font-size:12px; color: white; font-weight: bold;'>"+data_gr[aux].valor.toFixed(2) +" MWh</span><br><span style='font-size:11px; font-weight: bold;'>"+formatValueT(data_gr[aux].hora) +"</span></p>" +
+                            "<p class='content-center no-margin'><span style='font-size:12px !important; color: white !important; font-weight: bold !important;'>"+data_gr[aux].valor.toFixed(2) +" MWh</span><br><span style='font-size:11px !important; font-weight: bold !important; color: black !important'>"+formatValueT(data_gr[aux].hora) +"</span></p>" +
                         "</div>";
 
         var mouse_x = d3.mouse(this)[0];

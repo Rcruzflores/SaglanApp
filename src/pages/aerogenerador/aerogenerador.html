@@ -7,25 +7,27 @@
 <ion-content padding>
 
   <ion-grid>
-      <p class="titulo_left">Resumen de Estado:</p>
+    <ion-card>
+      <ion-row>
+        <p class="titulo_left">Resumen de Estado:</p>
+      </ion-row>
       <ion-row class="espacio_row">
-          <ion-col class="primera_columna primer_center">
-            <div>
+          <ion-col class="primer_center">
+            <div class="border_col">
               <p class="titulo_a">OPERACIÓN</p>
               <h2><span class="tipo numero_mwh">{{ operacion }}</span><span class="porcentaje_valor">{{ operacion_porcentaje }}</span></h2>
             </div>
           </ion-col>
           <ion-col class="primer_center">
             <div>
-              <p class="titulo_a">SERVICIOS</p>
+              <p class="titulo_a">SERVICIO</p>
               <h2 class="dato"><span class="tipo numero_mwh">{{ servicio }}</span><span class="porcentaje_valor">{{ servicio_porcentaje }}</span></h2>
-
             </div>
           </ion-col>
       </ion-row>
       <ion-row class="espacio_row">
-          <ion-col class="primera_columna primer_center">
-            <div>
+          <ion-col class="primer_center">
+            <div class="border_col">
               <p class="titulo_a">DETENIDOS</p>
               <h2 class="dato"><span class="tipo numero_mwh">{{ detenidos }}</span><span class="porcentaje_valor">{{ detenidos_porcentaje }}</span></h2>
             </div>
@@ -37,6 +39,7 @@
             </div>
           </ion-col>
       </ion-row>
+    </ion-card>
       <p class="titulo_left">Resumen Porcentual:</p>
       <ion-row id="espacio_pie">
           <ion-col id="pieChart">
