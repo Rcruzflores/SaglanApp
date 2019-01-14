@@ -63,12 +63,12 @@ export class GraficoComponent {
               .attr("y2", "100%");
             lg.append("stop")
               .attr("offset", "0%")
-              .style("stop-color", "#B4B4B4")
+              .style("stop-color", "#B0BEC5")
               .style("stop-opacity", 0.5);
 
             lg.append("stop")
               .attr("offset", "70%")
-              .style("stop-color", "#628da9")//start in blue
+              .style("stop-color", "#B0BEC5")//start in blue
               .style("stop-opacity", 0);
 
   }
@@ -130,24 +130,24 @@ export class GraficoComponent {
         .attr("class", "line")
         .attr("d", this.line)
         .style ("fill", "none")
-        .style ("stroke", "rgb(205, 205, 205)")
-        .style ("stroke-width", "2px");
+        .style ("stroke", "#B0BEC5")
+        .style ("stroke-width", "1px");
   }
   drawArea() {
     var lg = this.svg.append("defs").append("linearGradient")
               .attr("id", "mygrad")
-              .attr("x1", "10%")
-              .attr("x2", "0%")
-              .attr("y1", "60%")
-              .attr("y2", "100%");
+              .attr("x1", "25%")
+              .attr("x2", "25%")
+              .attr("y1", "76%")
+              .attr("y2", "110%");
         lg.append("stop")
               .attr("offset", "0%")
-              .style("stop-color", "#628da9")
+              .style("stop-color", "#B0BEC5")
               .style("stop-opacity", 0.5);
 
         lg.append("stop")
               .attr("offset", "70%")
-              .style("stop-color", "#628da9")
+              .style("stop-color", "#B0BEC5")
               .style("stop-opacity", 0);
     this.area = d3.area()
         .x( (d: any) => this.x(d.hora) )

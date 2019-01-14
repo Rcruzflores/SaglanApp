@@ -26,7 +26,7 @@
         <ion-card-header>
         <p class="titulo_left">Resumen de Energía</p>
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-content class="card-adjusment">
           <ion-col>
                 <div class="espacio_correcto" id={{index}}></div>
           </ion-col>
@@ -38,14 +38,14 @@
               <div>
                 <p class="titulo_left">Velocidad viento</p>
                 <h1 class="dato primer_center"><span class="tipo numero_mwh">{{ km }}</span></h1>
-                <h6 class="titulo_a ajuste_mwh">KM/h</h6>
+                <h6 class="color_sub ajuste_mwh">KM/h</h6>
               </div>
             </ion-col>
             <ion-col>
               <div>
                 <p class="titulo_left">Revoluciones</p>
                 <h1 class="dato primer_center"><span class="tipo numero_mwh">{{ rpm1 }}</span></h1>
-                <h6 class="titulo_a ajuste_mwh">RMP</h6>
+                <h6 class="color_sub ajuste_mwh">RMP</h6>
               </div>
             </ion-col>
         </ion-row>
@@ -55,21 +55,21 @@
               <div class="primer_center">
                 <p class="titulo_a" >OPERACIÓN</p>
                 <h2 class="dato"><span class="tipo">{{ operacio_hora }}</span><span class="pocentaje_wtg">({{ operacio_horaporcentaje }})</span></h2>
-                <h5 class="titulo_a">HORAS</h5>
+                <h5 class="color_sub">HORAS</h5>
               </div>
             </ion-col>
             <ion-col>
               <div class="primer_center primera_columna">
                 <p  class="titulo_a">SERVICIO</p>
                 <h2 class="dato"><span class="tipo">{{ servicio_hora }}</span><span class="pocentaje_wtg">({{ servicio_horaporcentaje }})</span></h2>
-                <h5 class="titulo_a">HORAS</h5>
+                <h5 class="color_sub">HORAS</h5>
               </div>
             </ion-col>
             <ion-col>
               <div class="primer_center">
                 <p class="titulo_a">DETENIDOS</p>
                 <h2 class="dato"><span class="tipo">{{ detenidos_hora }}</span><span class="pocentaje_wtg">({{ detenidos_horaporcentaje }})</span></h2>
-                <h5 class="titulo_a">HORAS</h5>
+                <h5 class="color_sub">HORAS</h5>
               </div>
             </ion-col>
         </ion-row>
@@ -79,21 +79,21 @@
               <div class="primer_center">
                 <h6 class="titulo_c">MTBI</h6>
                 <h6 class="dato"><span class="tipo">{{ kpi_mtb }}</span></h6>
-                <h6 class="titulo_a">DD HH:MM:SS</h6>
+                <h6 class="color_sub">DD HH:MM:SS</h6>
               </div>
             </ion-col>
             <ion-col>
               <div class="primer_center primera_columna">
                 <h6 class="titulo_c">MTBF</h6>
                 <h6 class="dato"><span class="tipo">{{ kpi_mtbf }}</span></h6>
-                <h6 class="titulo_a">DD HH:MM:SS</h6>
+                <h6 class="color_sub">DD HH:MM:SS</h6>
               </div>
             </ion-col>
             <ion-col>
               <div class="primer_center">
                 <h6 class="titulo_c">DTPF</h6>
                 <h6 class="dato"><span class="tipo">{{ kpi_dtpf }}</span></h6>
-                <h6 class="titulo_a">DD HH:MM:SS</h6>
+                <h6 class="color_sub">DD HH:MM:SS</h6>
               </div>
             </ion-col>
         </ion-row>

@@ -1,5 +1,7 @@
 grafico {
-
+    .content-md {
+      color: #fff;
+  }
 }
 //Alienación de tooltip
 .letra_D{
@@ -7,18 +9,10 @@ grafico {
   vertical-align: middle !important;
   line-height: 12px !important;
 }
-//Estilo de la linea del puntero
-.line {fill: none;stroke: #729fb5;stroke-width: 2px;}
-.line2 {
-  fill: none;
-  stroke:rgb(222, 156, 82);
-  stroke-width: 1.5px;
-  stroke-dasharray: 2;
-}
 
 //Color de las lineas tanto en los gráficos de
-.grid > .tick > line{
-  color: #B4B4B4;
+.grid > .tick > line {
+	color: #F1F1F1;
 }
 
 .grid > g >text{
@@ -33,3 +27,7 @@ grafico {
    font-family: Roboto;
    color: #B4B4B4;
  }
+
+g.axis.axis--x{  
+  color: cornsilk;
+}

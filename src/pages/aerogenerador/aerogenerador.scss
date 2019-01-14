@@ -15,7 +15,7 @@ page-aerogenerador {
   text-align: center !important;
   font-family: Roboto !important;
   color: #838383 !important;
-  font-weight: bold !important;
+  //font-weight: bold !important;
 }
 .primer_center{
   text-align: center !important;
@@ -45,4 +45,45 @@ page-aerogenerador {
 #espacio_pie{
   margin-top: -50px !important;
   margin-bottom: -60px !important;
+}
+$color_1: #FFFFFF;
+
+a.tooltips {
+	position: relative;
+	display: inline;
+	span {
+		position: absolute;
+		width: 140px;
+		color: $color_1;
+		background: #FFCA1C;
+		height: 70px;
+		line-height: 70px;
+		text-align: center;
+		visibility: hidden;
+		border-radius: 3px;
+		&:after {
+			content: '';
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -8px;
+			width: 0;
+			height: 0;
+			border-top: 8px solid #FFCA1C;
+			border-right: 8px solid transparent;
+			border-left: 8px solid transparent;
+		}
+	}
+}
+a {
+	&:hover.tooltips {
+		span {
+			visibility: visible;
+			opacity: 1;
+			bottom: 30px;
+			left: 50%;
+			margin-left: -76px;
+			z-index: 999;
+		}
+	}
 }

@@ -151,8 +151,26 @@ export class AerogeneradorPage {
   drawOthers(){
     /*
     * this.arcPath.on('mouseover', function(d) {
-    */
+
+    var div_ = d3.select("#pieChart")
+              .append("div")
+              .attr("id", "tooltip")
+              .attr("class", "tooltip")
+              .style("opacity", 0);
+    var tipBox = this.svg.append('arcPath')
+               .attr('width', this.width)
+               .attr('height', this.height)
+               .attr('opacity', 0)
+               .on('mousemove', drawTooltip)
+               .on('mouseout', removeTooltip);
+    function drawTooltip(){
+        var div_3 = d3.select('#pieChart');
+        data.forEach(function(d){
+          d.value = new d.value;
+        });
+    }*/
     this.arcPath.on('mouseover', function(d){
+
       console.log(d.value);
     });
   }

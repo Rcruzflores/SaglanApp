@@ -86,12 +86,12 @@ export class WtgPage {
               .attr("y2", "100%");
             lg.append("stop")
               .attr("offset", "0%")
-              .style("stop-color", "#B4B4B4")
+              .style("stop-color", "#B0BEC5")
               .style("stop-opacity", 0.5);
 
             lg.append("stop")
               .attr("offset", "70%")
-              .style("stop-color", "#B4B4B4")//start in blue
+              .style("stop-color", "#B0BEC5")//start in blue
               .style("stop-opacity", 0);
 
 
@@ -153,8 +153,8 @@ export class WtgPage {
         .attr("class", "line")
         .attr("d", this.line)
         .style ("fill", "none")
-        .style ("stroke", "#rgb(205, 205, 205)")
-        .style ("stroke-width", "2px");
+        .style ("stroke", "#B0BEC5")
+        .style ("stroke-width", "1px");
   }
   drawArea() {
     var lg = this.svg.append("defs").append("linearGradient")
@@ -165,12 +165,12 @@ export class WtgPage {
               .attr("y2", "100%");
         lg.append("stop")
               .attr("offset", "0%")
-              .style("stop-color", "#628da9")
+              .style("stop-color", "#B0BEC5")
               .style("stop-opacity", 0.5);
 
         lg.append("stop")
               .attr("offset", "70%")
-              .style("stop-color", "#628da9")
+              .style("stop-color", "#B0BEC5")
               .style("stop-opacity", 0);
     this.area = d3.area()
         .x( (d: any) => this.x(d.hora) )
@@ -198,99 +198,111 @@ export class WtgPage {
             )
   }
   drawOthers(){
-     this.svg.append("circle")
+     /*this.svg.append("circle")
         .attr("class","puntero")
         .attr("r", 3.5)
         .attr("id", "dot_1")
         .style("fill", "#fff")
         .style("stroke", "#f62a00")
         .style("stroke-width", 2)
-        .style("opacity", 0);
+        .style("opacity", 0);*/
+        var simplePoint = this.svg.append("circle")
+                            .attr("cx", 0)
+                            .attr("cy", 0)
+                            .attr("r", 5)
+                            .attr("id", "dot_1")
+                            .style("fill", "#FCB415")
+                            .style("opacity", 0);
 
-     var hoverLineGroup = this.svg.append("g")
-                .attr("id", "hover-line-");
-     var hoverLine = hoverLineGroup
-                .append("line")
-                .attr("id", "h-line-")
-                .attr("y1", 0)
-                .attr("y2", this.height)
-                .style('fill', 'none')
-                .style('stroke', 'rgba(222, 156, 82)')
-                .style('stroke-width', '1.5px')
-                .style('pointer-events', 'none')
-                .style('shape-rendering', 'crispEdges')
-                .style("opacity", 0);
+        var hoverLineGroup = this.svg.append("g")
+                   .attr("id", "hover-line-");
 
-
-      var div_ = d3.select(this.index_)
-                .append("div")
-                .attr("id", "tooltip")
-                .attr("class", "tooltip")
-                .style("opacity", 0);
-
-     var tipBox = this.svg.append('rect')
-                .attr('width', this.width)
-                .attr('height', this.height)
-                .attr('opacity', 0)
-                .on('mousemove', drawTooltip)
-                .on('mouseout', removeTooltip);
-
-    function removeTooltip() {
-        var div_t = d3.select('#tooltip')
-                  .transition()
-                  .duration(1500)
-                  .style("opacity", 0)
-                  .style("display", "none");
-
-        var line = d3.select("#h-line-").style("opacity", 0);
-        };
-
-    function drawTooltip() {
-
-        var div_3 = d3.select('#tooltip');
-        var line = d3.select("#h-line-");
-        var dot = d3.select("#dot_1");
-        var bisectDate = d3.bisector((d: any) => d.hora ).left;
-        var formatValueT = d3.timeFormat("%H:%M%p");
-
-        data_gr.forEach(function(d) {
-                    d.hora = new Date(d.hora);
-                    d.valor = +d.valor;
-              });
-
-        data_gr.forEach(function(d) {
-                d.hora = new Date(d.hora);
-                d.valor = +d.valor;
-          });
-
-        var por = this.width.animVal.value/data_gr.length;
-        var aux = d3.mouse(this)[0]/por;
-            aux = Number(aux.toFixed(0));
+        var hoverLine = hoverLineGroup
+                   .append("line")
+                   .attr("id", "h-line-")
+                   .attr("y1", 0)
+                   .attr("y2", this.height)
+                   .style('fill', 'none')
+                   .style('stroke', 'rgb(222, 156, 82)')
+                   .style('stroke-width', '1.5px')
+                   .style('pointer-events', 'none')
+                   .style('shape-rendering', 'crispEdges')
+                   .style("opacity", 0);
 
 
-        line.style("opacity", 1)
-              .attr("transform", "translate(" + d3.mouse(this)[0] + ")");
-        var tem;
-            tem = "<div class='text-center letra_D container-fluid'style='box-shadow: 5px 5px 10px #999; background-color:#FCB415;width:90px; height:48px;' >" +
-                        "<p class='content-center no-margin'><span style='font-size:12px !important; color: white !important; font-weight: bold !important;'>"+data_gr[aux].valor.toFixed(2) +" MWh</span><br><span style='font-size:11px !important; font-weight: bold !important; color: black !important'>"+formatValueT(data_gr[aux].hora) +"</span></p>" +
-                      "</div>";
+         var div_ = d3.select(this.index_)
+                   .append("div")
+                   .attr("id", "tooltip")
+                   .attr("class", "tooltip")
+                   .style("opacity", 0);
+        //funciones de tooltip
+        var tipBox = this.svg.append('rect')
+                   .attr('width', this.width)
+                   .attr('height', this.height)
+                   .attr('opacity', 0)
+                   .on('mousemove', drawTooltip)
+                   .on('mouseout', removeTooltip);
+        var x = this.x;
+        var y = this.y;
+        function removeTooltip() {
+           var div_t = d3.select('#tooltip')
+                     .transition()
+                     .duration(1500)
+                     .style("opacity", 0)
+                     .style("display", "none");
+           var dot = d3.select("#dot_1").style("opacity", 0);
+           var line = d3.select("#h-line-").style("opacity", 0);
+           };
 
-        var mouse_x = d3.mouse(this)[0];
-             if(mouse_x > this.width.animVal.value - 100){mouse_x = mouse_x - 150};
+        function drawTooltip() {
+           var div_3 = d3.select('#tooltip');
+           var line = d3.select("#h-line-");
+           var dot = d3.select("#dot_1");
+           var bisectDate = d3.bisector((d: any) => d.hora ).left;
+           var formatValueT = d3.timeFormat("%H:%M%p");
 
-        //console.log(this.width.animVal.value,mouse_x);
+           data_gr.forEach(function(d) {
+                   d.hora = new Date(d.hora);
+                   d.valor = +d.valor;
+             });
 
-        div_3.style('display','block');
-        div_3.transition()
-            .duration(500)
-            .style("opacity", 0);
-        div_3.transition()
-            .duration(200)
-            .style("opacity", .9);
-        div_3.html(tem)
-            .style("position","absolute")
-            .style("left", mouse_x + "px")
-            .style("top", d3.mouse(this)[1] - 50 + "px");
+          var data = data_gr;
+          var x0 = x.invert(d3.mouse(this)[0]),
+               i = bisectDate(data, x0, 1),
+               d0 = data[i - 1],
+               d1 = data[i],
+               d = x0 - d0.hora > d1.hora - x0 ? d1 : d0;
+               dot.style("opacity", 1)
+                  .attr("transform", "translate(" + x(d.hora) + "," + y(d.valor) + ")");
+           /*
+           var por = this.width.animVal.value/data_gr.length;
+           var aux = d3.mouse(this)[0]/por;
+               aux = Number(aux.toFixed(0));
+               */
+
+           line.style("opacity", 1)
+                 .attr("transform", "translate(" + x(d.hora) + ")");
+           var tem;
+               tem = "<div class='text-center letra_D container-fluid'style='box-shadow: 5px 5px 10px #999; background-color:#FCB415;width:90px; height:48px;' >" +
+                               "<p class='content-center no-margin'><span style='font-size:12px !important; color: white !important; font-weight: bold !important;'>"+d.valor.toFixed(2) +" MWh</span><br><span style='font-size:11px !important; font-weight: bold !important; color: black !important'>"+formatValueT(d.hora) +"</span></p>" +
+                           "</div>";
+
+           var mouse_x = d3.mouse(this)[0];
+                if(mouse_x > this.width.animVal.value - 100){mouse_x = mouse_x - 50};
+
+           //console.log(this.width.animVal.value,mouse_x);
+
+           div_3.style('display','block');
+           div_3.transition()
+               .duration(500)
+               .style("opacity", 0);
+           div_3.transition()
+               .duration(200)
+               .style("opacity", .9);
+           div_3.html(tem)
+               .style("position","absolute")
+               .style("left", mouse_x + "px")
+               .style("top", d3.mouse(this)[1] - 50 + "px");
     };
 
   }
