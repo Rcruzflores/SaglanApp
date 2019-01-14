@@ -185,11 +185,11 @@ export class GraficoComponent {
                           .style("stroke-width", 2)
                           .style("opacity", 0);
     */
-     var simplePoint = d3.selectAll("g")
-                         .append("circle")
-                         .attr("cx", 5)
-                         .attr("cy", 5)
+     var simplePoint = this.svg.append("circle")
+                         .attr("cx", 0)
+                         .attr("cy", 0)
                          .attr("r", 5)
+                         .attr("id", "dot_1")
                          .style("fill", "#FCB415");
 
 
@@ -221,7 +221,8 @@ export class GraficoComponent {
                 .attr('opacity', 0)
                 .on('mousemove', drawTooltip)
                 .on('mouseout', removeTooltip);
-
+    var x = this.x;
+    var y = this.y;
     function removeTooltip() {
         var div_t = d3.select('#tooltip')
                   .transition()
@@ -233,7 +234,6 @@ export class GraficoComponent {
         };
 
     function drawTooltip() {
-
         var div_3 = d3.select('#tooltip');
         var line = d3.select("#h-line-");
         var dot = d3.select("#dot_1");
@@ -241,29 +241,33 @@ export class GraficoComponent {
         var formatValueT = d3.timeFormat("%H:%M%p");
 
         data_gr.forEach(function(d) {
-                    d.hora = new Date(d.hora);
-                    d.valor = +d.valor;
-              });
-              //Doble for
-        data_gr.forEach(function(d) {
                 d.hora = new Date(d.hora);
                 d.valor = +d.valor;
           });
 
+       var data = data_gr;
+       var x0 = x.invert(d3.mouse(this)[0]),
+            i = bisectDate(data, x0, 1),
+            d0 = data[i - 1],
+            d1 = data[i],
+            d = x0 - d0.hora > d1.hora - x0 ? d1 : d0;
+
+        dot.attr("transform", "translate(" + x(d.hora) + "," + y(d.valor) + ")");
+        /*
         var por = this.width.animVal.value/data_gr.length;
         var aux = d3.mouse(this)[0]/por;
             aux = Number(aux.toFixed(0));
-
+            */
 
         line.style("opacity", 1)
-              .attr("transform", "translate(" + d3.mouse(this)[0] + ")");
+              .attr("transform", "translate(" + x(d.hora) + ")");
         var tem;
             tem = "<div class='text-center letra_D container-fluid'style='box-shadow: 5px 5px 10px #999; background-color:#FCB415;width:90px; height:48px;' >" +
-                            "<p class='content-center no-margin'><span style='font-size:12px !important; color: white !important; font-weight: bold !important;'>"+data_gr[aux].valor.toFixed(2) +" MWh</span><br><span style='font-size:11px !important; font-weight: bold !important; color: black !important'>"+formatValueT(data_gr[aux].hora) +"</span></p>" +
+                            "<p class='content-center no-margin'><span style='font-size:12px !important; color: white !important; font-weight: bold !important;'>"+d.valor.toFixed(2) +" MWh</span><br><span style='font-size:11px !important; font-weight: bold !important; color: black !important'>"+formatValueT(d.hora) +"</span></p>" +
                         "</div>";
 
         var mouse_x = d3.mouse(this)[0];
-             if(mouse_x > this.width.animVal.value - 100){mouse_x = mouse_x - 150};
+             if(mouse_x > this.width.animVal.value - 100){mouse_x = mouse_x - 50};
 
         //console.log(this.width.animVal.value,mouse_x);
 
