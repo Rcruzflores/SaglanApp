@@ -190,7 +190,8 @@ export class GraficoComponent {
                          .attr("cy", 0)
                          .attr("r", 5)
                          .attr("id", "dot_1")
-                         .style("fill", "#FCB415");
+                         .style("fill", "#FCB415")
+                         .style("opacity", 0);
 
 
      var hoverLineGroup = this.svg.append("g")
@@ -229,7 +230,7 @@ export class GraficoComponent {
                   .duration(1500)
                   .style("opacity", 0)
                   .style("display", "none");
-
+        var dot = d3.select("#dot_1").style("opacity", 0);
         var line = d3.select("#h-line-").style("opacity", 0);
         };
 
@@ -252,7 +253,8 @@ export class GraficoComponent {
             d1 = data[i],
             d = x0 - d0.hora > d1.hora - x0 ? d1 : d0;
 
-        dot.attr("transform", "translate(" + x(d.hora) + "," + y(d.valor) + ")");
+        dot.style("opacity", 1)
+           .attr("transform", "translate(" + x(d.hora) + "," + y(d.valor) + ")");
         /*
         var por = this.width.animVal.value/data_gr.length;
         var aux = d3.mouse(this)[0]/por;
