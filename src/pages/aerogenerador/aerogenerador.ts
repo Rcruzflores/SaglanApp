@@ -31,7 +31,7 @@ export class AerogeneradorPage {
 
   // Cambie el top de 20 a 100 para visualizar más grande el pieChart
 
-  margin = {top: 100, right: 20, bottom: 30, left: 50};
+  margin = {top: 50, right: 20, bottom: 30, left: 50};
   width: number;
   height: number;
   radius: number;
