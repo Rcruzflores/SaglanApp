@@ -193,7 +193,6 @@ export class GraficoComponent {
                          .style("fill", "#FCB415")
                          .style("opacity", 0);
 
-
      var hoverLineGroup = this.svg.append("g")
                 .attr("id", "hover-line-");
 
@@ -252,9 +251,8 @@ export class GraficoComponent {
             d0 = data[i - 1],
             d1 = data[i],
             d = x0 - d0.hora > d1.hora - x0 ? d1 : d0;
-
-        dot.style("opacity", 1)
-           .attr("transform", "translate(" + x(d.hora) + "," + y(d.valor) + ")");
+            dot.style("opacity", 1)
+               .attr("transform", "translate(" + x(d.hora) + "," + y(d.valor) + ")");
         /*
         var por = this.width.animVal.value/data_gr.length;
         var aux = d3.mouse(this)[0]/por;

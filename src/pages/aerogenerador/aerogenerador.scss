@@ -2,16 +2,13 @@ page-aerogenerador {
   h2{
     margin-top: -1rem;
   }
-
-  .d3-donut{
-    margin-bottom: -100px;
-  }
   //Estilo de margen para Aerogenerador.html
   .border_col{
     border-right-width: 1px;
     border-right-style: solid;
     border-right-color: #B4B4B4;
   }
+
 }
 .titulo_a{
   font-size: 11px !important;
@@ -29,10 +26,10 @@ page-aerogenerador {
   font-size: 20px;
 }
 
-//Mover arriba el contenido del energía, para así ajustar las areas.
+//Mover arriba el contenido, para así ajustar las areas.
 .scroll-content{
-  padding-top: 0px !important;
-  background-color: #dee2e6;
+  padding-top: 5px !important;
+  background-color: #fff;
 }
 // Mover el d3 pie
 #pieChart{
@@ -43,4 +40,9 @@ page-aerogenerador {
 .numero_mwh{
   font-size: 34px;
   font-family: Roboto !important;
+}
+
+#espacio_pie{
+  margin-top: -50px !important;
+  margin-bottom: -60px !important;
 }

@@ -153,7 +153,7 @@ export class WtgPage {
         .attr("class", "line")
         .attr("d", this.line)
         .style ("fill", "none")
-        .style ("stroke", "#B4B4B4")
+        .style ("stroke", "#rgb(205, 205, 205)")
         .style ("stroke-width", "2px");
   }
   drawArea() {
