@@ -8,7 +8,12 @@ page-aerogenerador {
     border-right-style: solid;
     border-right-color: #B4B4B4;
   }
+  align-items: center !important;
 
+  //alienación del g´rafico
+}
+#grafico_e{
+  margin-top: -29px !important;
 }
 .titulo_a{
   font-size: 11px !important;
@@ -28,7 +33,8 @@ page-aerogenerador {
 
 //Mover arriba el contenido, para así ajustar las areas.
 .scroll-content{
-  padding-top: 5px !important;
+  padding: 0px !important;
+  padding-top: 1px !important;
   background-color: #fff;
 }
 // Mover el d3 pie
@@ -44,46 +50,5 @@ page-aerogenerador {
 
 #espacio_pie{
   margin-top: -50px !important;
-  margin-bottom: -60px !important;
-}
-$color_1: #FFFFFF;
-
-a.tooltips {
-	position: relative;
-	display: inline;
-	span {
-		position: absolute;
-		width: 140px;
-		color: $color_1;
-		background: #FFCA1C;
-		height: 70px;
-		line-height: 70px;
-		text-align: center;
-		visibility: hidden;
-		border-radius: 3px;
-		&:after {
-			content: '';
-			position: absolute;
-			top: 100%;
-			left: 50%;
-			margin-left: -8px;
-			width: 0;
-			height: 0;
-			border-top: 8px solid #FFCA1C;
-			border-right: 8px solid transparent;
-			border-left: 8px solid transparent;
-		}
-	}
-}
-a {
-	&:hover.tooltips {
-		span {
-			visibility: visible;
-			opacity: 1;
-			bottom: 30px;
-			left: 50%;
-			margin-left: -76px;
-			z-index: 999;
-		}
-	}
+  margin-bottom: -75px !important;
 }
