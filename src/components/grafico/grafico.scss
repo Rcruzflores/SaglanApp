@@ -7,7 +7,7 @@ grafico {
 .letra_D{
   text-align: center;
   vertical-align: middle !important;
-  line-height: 12px !important;
+  // line-height: 12px !important;
 }
 
 //Color de las lineas tanto en los gráficos de
@@ -28,6 +28,6 @@ grafico {
    color: #B4B4B4;
  }
 
-g.axis.axis--x{  
+g.axis.axis--x{
   color: cornsilk;
 }

@@ -89,7 +89,7 @@ export class MyApp {
             displayText: 'Aerogenerador ' + i,
             custom: {titulo:'Aerogenerador nº ' + i,indice: i},
 			      component: 'WtgPage',
-            iconName: 'list'
+            iconName: 'ios-stats-outline' //icon original 'list'
           });
         }
 

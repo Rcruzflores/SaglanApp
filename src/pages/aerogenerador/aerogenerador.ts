@@ -169,9 +169,43 @@ export class AerogeneradorPage {
           d.value = new d.value;
         });
     }*/
-    this.arcPath.on('mouseover', function(d){
+    var div_ = d3.selectAll("#espacio_pie")
+              .append("div")
+              .attr("id", "tooltip2")
+              .style("opacity", 0);
 
-      console.log(d.value);
+    this.arcPath.on('mouseover', function(d){
+      var div_3 = d3.select("#tooltip2");
+
+      var tem;
+          tem = "<div class='text-center letra_D container-fluid'style='box-shadow: 5px 5px 10px #999; background-color:#FCB415;width:90px; height:48px;' >" +
+                          "<p class='content-center no-margin'><span style='font-size:12px !important; color: white !important; font-weight: bold !important;'>"+d.data.status +"</span><br><span style='font-size:11px !important; font-weight: bold !important; color: black !important'>"+d.data.value +" %</span></p>" +
+                      "</div>";
+      var mouse_x = d3.mouse(this)[0];
+      var mouse_y = d3.mouse(this)[1];
+        //  if(mouse_x > - 100){mouse_x = mouse_x - 50};
+        if(mouse_x< 6.333){ mouse_x = 162.044};
+        if(mouse_y< 300){mouse_y = 230};
+
+      //console.log(this.width.animVal.value,mouse_x);
+      div_3.style('display','block');
+      div_3.transition()
+          .duration(500)
+          .style("opacity", 0);
+      div_3.transition()
+          .duration(200)
+          .style("opacity", 0.9);
+      div_3.html(tem)
+          .style("position","absolute")
+          .style("left", mouse_x + "px")
+          .style("top", mouse_y + "px");
+
+    //  console.log(d.value);
+      /*
+      function drawTooltip(){
+          var div_3 = d3.select('#pieChart');
+      }*/
+
     });
   }
 }

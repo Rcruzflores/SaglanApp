@@ -263,7 +263,7 @@ export class GraficoComponent {
               .attr("transform", "translate(" + x(d.hora) + ")");
         var tem;
             tem = "<div class='text-center letra_D container-fluid'style='box-shadow: 5px 5px 10px #999; background-color:#FCB415;width:90px; height:48px;' >" +
-                            "<p class='content-center no-margin'><span style='font-size:12px !important; color: white !important; font-weight: bold !important;'>"+d.valor.toFixed(2) +" MWh</span><br><span style='font-size:11px !important; font-weight: bold !important; color: black !important'>"+formatValueT(d.hora) +"</span></p>" +
+                            "<p class='content-center no-margin' style='padding-top: 8px !important;'><p style='font-size:13px !important; color: white !important; font-weight: bold !important; margin-bottom: -3px;'>"+d.valor.toFixed(2) +" MWh</p><p style='font-size:12px !important; font-weight: bold !important; color: black !important; margin-top: -1px;'>"+formatValueT(d.hora) +"</p></p>" +
                         "</div>";
 
         var mouse_x = d3.mouse(this)[0];
@@ -277,7 +277,7 @@ export class GraficoComponent {
             .style("opacity", 0);
         div_3.transition()
             .duration(200)
-            .style("opacity", .9);
+            .style("opacity", 0.9);
         div_3.html(tem)
             .style("position","absolute")
             .style("left", mouse_x + "px")
