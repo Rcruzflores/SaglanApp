@@ -23,7 +23,7 @@ export const data: any[] = [
         }
     ];
 
-export const data_gr: any[] = [
+export const data_gr1: any[] = [
                     {
                      "hora": "2018-12-13T17:20:00.000Z",
                       "valor": 4.497247,

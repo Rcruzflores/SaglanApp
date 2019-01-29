@@ -1,0 +1,13 @@
+<ion-content padding center text-center>
+  <ion-title>Saglan</ion-title>
+  <ion-list>
+    <ion-item>
+      <ion-input placeholder="Nombre de usuario" [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Contraseña" type="password" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button full (click)="login()">Acceder</button>
+</ion-content>

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
 
-import { data_gr } from '../../data/data';
+import { Observable } from 'rxjs/Observable';
+import { Events } from 'ionic-angular';
+//import { data_gr1 } from '../../data/data';
 
 import * as d3 from 'd3';
 /**
@@ -20,291 +23,74 @@ export class WtgPage {
   param = this.navParams.data;
   title = this.param.titulo;
   index = "grafico_w"+this.param.indice;
-  index_ =  "#grafico_w"+this.navParams.data.indice;
+  indice_wtg = this.param.index;
+  ms = 0;
+  rpm1 = 0;
 
-  km = '50';
-  rpm1 = '50';
+  operacio_hora= 0;
+  servicio_hora= 0;
+  detenidos_hora= 0;
 
-  operacio_hora= '71';
-  servicio_hora= '12';
-  detenidos_hora= '5';
+  operacio_horaporcentaje= ' 0%';
+  servicio_horaporcentaje= ' 0%';
+  detenidos_horaporcentaje= ' 0%';
 
-  operacio_horaporcentaje= ' 65%';
-  servicio_horaporcentaje= ' 20%';
-  detenidos_horaporcentaje= ' 2%';
+  kpi_mtb= '00:00:00';
+  kpi_mtbf= '00:00:00';
+  kpi_dtpf= '00:00:00';
 
-  kpi_mtb= '4 23:55:05';
-  kpi_mtbf= '3:38:21';
-  kpi_dtpf= '3:38:21';
+  data: Observable<any>;
 
-  margin = {top: 55, right: 50, bottom: 20, left: 25};
-  width: number;
-  height: number;
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public apiProvider: ApiProvider,
+              public events: Events) {
+    console.log(this.param);
+    this.data = this.apiProvider.postGrWtg(this.indice_wtg);
 
-  x: any;
-  y: any;
-  svg: any;
-  line: any;
-  area: any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-      this.width = 400 - this.margin.left - this.margin.right ;
-      this.height = 300 - this.margin.top - this.margin.bottom;
-  }
-  ionViewDidLoad() {
-    let TIME_IN_MS = 1000; let hideFooterTimeout = setTimeout( () => {
-        this.initSvg();
-        this.drawGrid();
-        this.initAxis();
-        this.drawAxis();
-        this.drawLine();
-        this.drawArea();
-        this.drawOthers();
-      }, TIME_IN_MS);
-  }
-  ngOnInit() {
+    this.cargarDatos();
   }
 
-  initSvg() {
-        console.log(this.index_);
-
-        var container = d3.select(this.index_).append("svg");
-
-        this.svg = container
-            .attr("width", '100%')
-            .attr("height", '100%')
-            .attr('viewBox','5 10 339 310')
-            .append("g")
-            .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
-
-
-        var lg = this.svg.append("defs").append("linearGradient")
-              .attr("id", "mygrad")//id of the gradient
-              .attr("x1", "10%")
-              .attr("x2", "0%")
-              .attr("y1", "60%")
-              .attr("y2", "100%");
-            lg.append("stop")
-              .attr("offset", "0%")
-              .style("stop-color", "#B0BEC5")
-              .style("stop-opacity", 0.5);
-
-            lg.append("stop")
-              .attr("offset", "70%")
-              .style("stop-color", "#B0BEC5")//start in blue
-              .style("stop-opacity", 0);
-
-
-  }
-  initAxis() {
-    data_gr.forEach(function(d) {
-                d.hora = new Date(d.hora);
-                d.valor = +d.valor;
-          });
-    this.x = d3.scaleTime().range([0, this.width]);
-    this.y = d3.scaleLinear().range([this.height, 0]);
-    this.x.domain(d3.extent(data_gr, (d) => d.hora ));
-    this.y.domain(d3.extent(data_gr, (d) => d.valor ));
-
-  }
-  drawAxis() {
-    var locale = d3.timeFormatLocale({
-        "dateTime": "%a %b %e %X %Y",
-        "date": "%d/%m/%Y",
-        "time": "%H:%M:%S",
-        "periods": [" AM", " PM"],
-        "days": ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-        "shortDays": ["Dom", "Lun", "Mar", "Mi", "Jue", "Vie", "Sab"],
-        "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-        "shortMonths": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
-        });
-
-    var formatMillisecond = locale.format(".%L"),
-        formatSecond = locale.format(":%S"),
-        formatMinute = locale.format("%I:%M"),
-        formatHour = locale.format("%I %p"),
-        formatDay = locale.format("%a %d"),
-        formatWeek = locale.format("%b %d"),
-        formatMonth = locale.format("%B"),
-        formatYear = locale.format("%Y");
-
-    function multiFormat(date) {
-          return (d3.timeSecond(date) < date ? formatMillisecond
-              : d3.timeMinute(date) < date ? formatSecond
-              : d3.timeHour(date) < date ? formatMinute
-              : d3.timeDay(date) < date ? formatHour
-              : d3.timeMonth(date) < date ? (d3.timeWeek(date) < date ? formatDay : formatWeek)
-              : d3.timeYear(date) < date ? formatMonth
-              : formatYear)(date);
-        };
-    this.svg.append("g")
-        .attr("class", "axis axis--x")
-        .attr("transform", "translate(0," + this.height + ")")
-        .call(d3.axisBottom(this.x).tickFormat(multiFormat));
-
-  }
-  drawLine() {
-    this.line = d3.line()
-        .x( (d: any) => this.x(d.hora) )
-        .y( (d: any) => this.y(d.valor) );
-
-    this.svg.append("path")
-        .datum(data_gr)
-        .attr("class", "line")
-        .attr("d", this.line)
-        .style ("fill", "none")
-        .style ("stroke", "#B0BEC5")
-        .style ("stroke-width", "1px");
-  }
-  drawArea() {
-    var lg = this.svg.append("defs").append("linearGradient")
-              .attr("id", "mygrad")
-              .attr("x1", "10%")
-              .attr("x2", "0%")
-              .attr("y1", "60%")
-              .attr("y2", "100%");
-        lg.append("stop")
-              .attr("offset", "0%")
-              .style("stop-color", "#B0BEC5")
-              .style("stop-opacity", 0.5);
-
-        lg.append("stop")
-              .attr("offset", "70%")
-              .style("stop-color", "#B0BEC5")
-              .style("stop-opacity", 0);
-    this.area = d3.area()
-        .x( (d: any) => this.x(d.hora) )
-        .y0(this.height)
-        .y1( (d: any) => this.y(d.valor) );
-
-    this.svg.append("path")
-        .datum(data_gr)
-        .attr("class", "area")
-        .attr("d", this.area)
-        .style("fill","url(#mygrad)");
-  }
-  drawGrid(){
-
-        var y = d3.scaleLinear().range([this.height, 0]);
-            y.domain(d3.extent(data_gr, (d) => d.valor ));
-        function make_y_gridlines() {
-            return d3.axisLeft(y)
+  cargarDatos(){
+      this.data.subscribe(
+        (data) => { // Success
+          this.apiProvider.grafico = data;
+            console.log(this.apiProvider.grafico);
+            this.events.publish('grafico:portafolio');
+            this.indicadores();
+        },
+        (error) =>{
+          console.error(error);
         }
-        var s_g = this.svg.append("g");
-            // add the Y gridlines
-           s_g.attr("class", "grid")
-            .call(make_y_gridlines()
-                .tickSize(-this.width)
-            )
+      )
   }
-  drawOthers(){
-     /*this.svg.append("circle")
-        .attr("class","puntero")
-        .attr("r", 3.5)
-        .attr("id", "dot_1")
-        .style("fill", "#fff")
-        .style("stroke", "#f62a00")
-        .style("stroke-width", 2)
-        .style("opacity", 0);*/
-        var simplePoint = this.svg.append("circle")
-                            .attr("cx", 0)
-                            .attr("cy", 0)
-                            .attr("r", 5)
-                            .attr("id", "dot_1")
-                            .style("fill", "#FCB415")
-                            .style("opacity", 0);
+  indicadores(){
+    this.kpi_mtb= this.apiProvider.grafico['mtbi'];
+    this.kpi_mtbf= this.apiProvider.grafico['mtbf'];
+    this.kpi_dtpf= this.apiProvider.grafico['dtpf'];
+    var horas = this.apiProvider.grafico['horas']
+    this.operacio_hora = parseInt(horas['ag_ok']);
+    this.servicio_hora = parseInt(horas['ag_servicio']);
+    var detenido = parseInt(horas['ag_parados']);
+    var sincom = parseInt(horas['ag_sincomm']);
+    this.detenidos_hora = detenido + sincom;
+    var total = horas['ag_total'];
+    var p_o = parseInt(((this.operacio_hora /total)*100).toFixed(0));
+    var p_s = parseInt(((this.servicio_hora /total)*100).toFixed(0));
+    var p_d = parseInt(((this.detenidos_hora /total)*100).toFixed(0));
+    this.operacio_horaporcentaje = ' '+ p_o.toString() +'%';
+    this.servicio_horaporcentaje = ' '+ p_s.toString() +'%';
+    this.detenidos_horaporcentaje = ' '+ p_d.toString() +'%';
 
-        var hoverLineGroup = this.svg.append("g")
-                   .attr("id", "hover-line-");
-
-        var hoverLine = hoverLineGroup
-                   .append("line")
-                   .attr("id", "h-line-")
-                   .attr("y1", 0)
-                   .attr("y2", this.height)
-                   .style('fill', 'none')
-                   .style('stroke', 'rgb(222, 156, 82)')
-                   .style('stroke-width', '1.5px')
-                   .style('pointer-events', 'none')
-                   .style('shape-rendering', 'crispEdges')
-                   .style("opacity", 0);
-
-
-         var div_ = d3.select(this.index_)
-                   .append("div")
-                   .attr("id", "tooltip")
-                   .attr("class", "tooltip")
-                   .style("opacity", 0);
-        //funciones de tooltip
-        var tipBox = this.svg.append('rect')
-                   .attr('width', this.width)
-                   .attr('height', this.height)
-                   .attr('opacity', 0)
-                   .on('mousemove', drawTooltip)
-                   .on('mouseout', removeTooltip);
-        var x = this.x;
-        var y = this.y;
-        function removeTooltip() {
-           var div_t = d3.select('#tooltip')
-                     .transition()
-                     .duration(1500)
-                     .style("opacity", 0)
-                     .style("display", "none");
-           var dot = d3.select("#dot_1").style("opacity", 0);
-           var line = d3.select("#h-line-").style("opacity", 0);
-           };
-
-        function drawTooltip() {
-           var div_3 = d3.select('#tooltip');
-           var line = d3.select("#h-line-");
-           var dot = d3.select("#dot_1");
-           var bisectDate = d3.bisector((d: any) => d.hora ).left;
-           var formatValueT = d3.timeFormat("%H:%M%p");
-
-           data_gr.forEach(function(d) {
-                   d.hora = new Date(d.hora);
-                   d.valor = +d.valor;
-             });
-
-          var data = data_gr;
-          var x0 = x.invert(d3.mouse(this)[0]),
-               i = bisectDate(data, x0, 1),
-               d0 = data[i - 1],
-               d1 = data[i],
-               d = x0 - d0.hora > d1.hora - x0 ? d1 : d0;
-               dot.style("opacity", 1)
-                  .attr("transform", "translate(" + x(d.hora) + "," + y(d.valor) + ")");
-           /*
-           var por = this.width.animVal.value/data_gr.length;
-           var aux = d3.mouse(this)[0]/por;
-               aux = Number(aux.toFixed(0));
-               */
-
-           line.style("opacity", 1)
-                 .attr("transform", "translate(" + x(d.hora) + ")");
-           var tem;
-               tem = "<div class='text-center letra_D container-fluid'style='box-shadow: 5px 5px 10px #999; background-color:#FCB415;width:90px; height:48px;' >" +
-                               "<p class='content-center no-margin' style='padding-top: 8px !important;'><p style='font-size:13px !important; color: white !important; font-weight: bold !important; margin-bottom: -3px;'>"+d.valor.toFixed(2) +" MWh</p><p style='font-size:12px !important; font-weight: bold !important; color: black !important; margin-top: -1px;'>"+formatValueT(d.hora) +"</p></p>" +
-                           "</div>";
-
-           var mouse_x = d3.mouse(this)[0];
-                if(mouse_x > this.width.animVal.value - 100){mouse_x = mouse_x - 50};
-
-           //console.log(this.width.animVal.value,mouse_x);
-
-           div_3.style('display','block');
-           div_3.transition()
-               .duration(500)
-               .style("opacity", 0);
-           div_3.transition()
-               .duration(200)
-               .style("opacity", 0.9);
-           div_3.html(tem)
-               .style("position","absolute")
-               .style("left", mouse_x + "px")
-               .style("top", d3.mouse(this)[1] - 50 + "px");
-    };
-
+    this.rpm1 = this.apiProvider.grafico['rpm'];
+    var d = this.apiProvider.grafico['energia'];
+    var viento = 0;
+    for (let i = 0; i < d.length; i++) {
+        if(i >= d.length - 6){
+            viento = viento + d[i]["valor3"];
+        };
+        };
+    this.ms = parseInt(viento.toFixed(0));
   }
 
 }

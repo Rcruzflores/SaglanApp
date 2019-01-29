@@ -12,18 +12,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 // App
 import { MyApp } from './app.component';
-
+import { HttpClientModule } from '@angular/common/http';
 // Custom components
 import { SideMenuContentComponent } from '../shared/side-menu-content/side-menu-content.component';
+import { ApiProvider } from '../providers/api/api';
 
 @NgModule({
   declarations: [MyApp, SideMenuContentComponent],
-  imports: [BrowserModule, IonicModule.forRoot(MyApp)],
+  imports: [BrowserModule,HttpClientModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
   entryComponents: [MyApp],
   providers: [
     StatusBar, SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ApiProvider
   ]
 })
 export class AppModule {

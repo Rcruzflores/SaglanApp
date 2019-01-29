@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ApiProvider } from '../../providers/api/api';
 
-import { data_gr } from '../../data/data';
+import { data_gr1 } from '../../data/data';
+import { Events } from 'ionic-angular';
 
 import * as d3 from 'd3';
 /**
@@ -18,35 +20,42 @@ export class GraficoComponent {
   margin = {top: 55, right: 50, bottom: 20, left: 25};
   width: number;
   height: number;
-  index_ =  "#grafico_e";
-
-
+  @Input() div_id: string;
+  @Input() div_class: string;
+  datos: any[] = [];
   x: any;
   y: any;
   svg: any;
   line: any;
   area: any;
 
-  constructor(){
+  constructor(public events: Events,
+              public apiProvider: ApiProvider,){
       this.width = 400 - this.margin.left - this.margin.right ;
       this.height = 300 - this.margin.top - this.margin.bottom;
+      events.subscribe('grafico:portafolio', () => {
+        this.init_grafico();
+      });
   }
 
   ngOnInit() {
-    let TIME_IN_MS = 1000; let hideFooterTimeout = setTimeout( () => {
-        this.initSvg();
-        this.drawGrid();
-        this.initAxis();
-        this.drawAxis();
-        this.drawLine();
-        this.drawArea();
-        this.drawOthers();
-      }, TIME_IN_MS);
   }
 
+  init_grafico() {
+    this.initSvg();
+    this.drawGrid();
+    this.initAxis();
+    this.drawAxis();
+    this.drawLine();
+    this.drawArea();
+    this.drawOthers();
+  }
   // El eje y
   initSvg() {
-        var container = d3.select(this.index_).append("svg");
+        d3.select('svg').remove();
+        this.datos = this.apiProvider.grafico['energia'];
+        //console.log(data_gr1);
+        var container = d3.select("#"+this.div_id).append("svg");
         this.svg = container
             .attr("width", '100%')
             .attr("height", '100%')
@@ -74,14 +83,14 @@ export class GraficoComponent {
   }
   // el eje x
   initAxis() {
-    data_gr.forEach(function(d) {
+    this.datos.forEach(function(d) {
                 d.hora = new Date(d.hora);
                 d.valor = +d.valor;
           });
     this.x = d3.scaleTime().range([0, this.width]);
     this.y = d3.scaleLinear().range([this.height, 0]);
-    this.x.domain(d3.extent(data_gr, (d) => d.hora ));
-    this.y.domain(d3.extent(data_gr, (d) => d.valor ));
+    this.x.domain(d3.extent(this.datos, (d) => d.hora ));
+    this.y.domain(d3.extent(this.datos, (d) => d.valor ));
 
   }
   drawAxis() {
@@ -117,16 +126,18 @@ export class GraficoComponent {
     this.svg.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + this.height + ")")
-        .call(d3.axisBottom(this.x).tickFormat(multiFormat));
+        .call(d3.axisBottom(this.x)
+              .ticks(6).tickFormat(multiFormat));
 
   }
   drawLine() {
     this.line = d3.line()
+        .curve(d3.curveNatural)
         .x( (d: any) => this.x(d.hora) )
         .y( (d: any) => this.y(d.valor) );
 
     this.svg.append("path")
-        .datum(data_gr)
+        .datum(this.datos)
         .attr("class", "line")
         .attr("d", this.line)
         .style ("fill", "none")
@@ -150,12 +161,13 @@ export class GraficoComponent {
               .style("stop-color", "#B0BEC5")
               .style("stop-opacity", 0);
     this.area = d3.area()
+        .curve(d3.curveNatural)
         .x( (d: any) => this.x(d.hora) )
         .y0(this.height)
         .y1( (d: any) => this.y(d.valor) );
 
     this.svg.append("path")
-        .datum(data_gr)
+        .datum(this.datos)
         .attr("class", "area")
         .attr("d", this.area)
         .style("fill","url(#mygrad)");
@@ -163,7 +175,7 @@ export class GraficoComponent {
   drawGrid(){
 
         var y = d3.scaleLinear().range([this.height, 0]);
-            y.domain(d3.extent(data_gr, (d) => d.valor ));
+            y.domain(d3.extent(this.datos, (d) => d.valor ));
         function make_y_gridlines() {
             return d3.axisLeft(y)
         }
@@ -223,6 +235,8 @@ export class GraficoComponent {
                 .on('mouseout', removeTooltip);
     var x = this.x;
     var y = this.y;
+    var data = this.datos;
+
     function removeTooltip() {
         var div_t = d3.select('#tooltip')
                   .transition()
@@ -240,12 +254,6 @@ export class GraficoComponent {
         var bisectDate = d3.bisector((d: any) => d.hora ).left;
         var formatValueT = d3.timeFormat("%H:%M%p");
 
-        data_gr.forEach(function(d) {
-                d.hora = new Date(d.hora);
-                d.valor = +d.valor;
-          });
-
-       var data = data_gr;
        var x0 = x.invert(d3.mouse(this)[0]),
             i = bisectDate(data, x0, 1),
             d0 = data[i - 1],

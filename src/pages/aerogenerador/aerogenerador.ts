@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApiProvider } from '../../providers/api/api';
 
-import { data } from '../../data/data';
+import { Observable } from 'rxjs/Observable';
 
 import * as d3 from 'd3';
 /**
@@ -18,15 +19,16 @@ import * as d3 from 'd3';
 })
 export class AerogeneradorPage {
   //Las variables que se visualiza en el interfaz
-  operacion= 71;
-  servicio= 12;
-  detenidos= 8;
-  sin_comunicacion= 5;
+  param = this.navParams.data;
+  operacion = 0;
+  servicio = 0;
+  detenidos = 0;
+  sin_comunicacion = 0;
 
-  operacion_porcentaje= ' (65%)';
-  servicio_porcentaje= ' (20%)';
-  detenidos_porcentaje= ' (10%)';
-  sin_comunicacion_porcentaje= ' (2%)';
+  operacion_porcentaje = ' (0%)';
+  servicio_porcentaje = ' (0%)';
+  detenidos_porcentaje = ' (0%)';
+  sin_comunicacion_porcentaje = ' (0%)';
   // fin de las variables de visualización
 
   // Cambie el top de 20 a 100 para visualizar más grande el pieChart
@@ -37,6 +39,10 @@ export class AerogeneradorPage {
   radius: number;
   sum: number;
 
+	data: any[] = [];
+
+  data_wtg: Observable<any>;
+
   arc: any;
   arcPath: any;
   labelArc: any;
@@ -44,16 +50,56 @@ export class AerogeneradorPage {
   color: any;
   svg: any;
 
-  constructor() {
+  constructor(public navParams: NavParams,
+              public apiProvider: ApiProvider,) {
       this.width = 600 - this.margin.left - this.margin.right ;
       this.height = 332 - this.margin.top - this.margin.bottom;
       this.radius = Math.min(this.width, this.height) / 2;
-  }
 
+      console.log(this.param);
+      if(this.param['nivel'] == 'portafolio'){
+        this.data_wtg = this.apiProvider.postPortafolio_InfoWtg();
+        this.cargarDatos();
+      }else if(this.param['nivel'] == 'parque'){
+        this.data_wtg = this.apiProvider.postParque_InfoWtg(this.param['indice']);
+        this.cargarDatos();
+      };
+  }
+  cargarDatos(){
+    this.data_wtg.subscribe(
+      (data) => { // Success
+        this.data  = data;
+        this.initSvg();
+        this.drawPie();
+        this.drawOthers();
+        this.indicadores();
+      },
+      (error) =>{
+        console.error(error);
+      }
+    )
+  }
   ngOnInit() {
-      this.initSvg();
-      this.drawPie();
-      this.drawOthers();
+  }
+  indicadores(){
+    console.log(this.data);
+    this.operacion = parseInt(this.data[0]['value']);
+    this.servicio = parseInt(this.data[1]['value']);
+    this.detenidos = parseInt(this.data[2]['value']);
+    this.sin_comunicacion = parseInt(this.data[3]['value']);
+    var total = 0;
+    var d = this.data
+    for (let i = 0; i < d.length; i++) {
+      total += d[i]['value'];
+    };
+    var p_o = parseInt(((this.operacion /total)*100).toFixed(0));
+    var p_s = parseInt(((this.servicio /total)*100).toFixed(0));
+    var p_d = parseInt(((this.detenidos /total)*100).toFixed(0));
+    var p_sc = parseInt(((this.sin_comunicacion /total)*100).toFixed(0));
+    this.operacion_porcentaje = ' ('+ p_o.toString() +'%)';
+    this.servicio_porcentaje = ' ('+ p_s.toString() +'%)';
+    this.detenidos_porcentaje = ' ('+ p_d.toString() +'%)';
+    this.sin_comunicacion_porcentaje = ' ('+ p_sc.toString() +'%)';
   }
   initSvg() {
 
@@ -64,7 +110,7 @@ export class AerogeneradorPage {
             radius = (size/2) - distance;
 
         var aux = 0;
-        data.forEach(function(d) {
+        this.data.forEach(function(d) {
           aux += d.value;
 
         });
@@ -94,7 +140,7 @@ export class AerogeneradorPage {
 
   drawPie() {
         let arcGroup = this.svg.selectAll(".arc")
-            .data(this.pie(data))
+            .data(this.pie(this.data))
             .enter().append("g")
             .attr("class", "arc");
         this.arcPath = arcGroup.append("path").attr("d",this.arc)
@@ -149,26 +195,6 @@ export class AerogeneradorPage {
             .style('fill', '#0A77B6');
   }
   drawOthers(){
-    /*
-    * this.arcPath.on('mouseover', function(d) {
-
-    var div_ = d3.select("#pieChart")
-              .append("div")
-              .attr("id", "tooltip")
-              .attr("class", "tooltip")
-              .style("opacity", 0);
-    var tipBox = this.svg.append('arcPath')
-               .attr('width', this.width)
-               .attr('height', this.height)
-               .attr('opacity', 0)
-               .on('mousemove', drawTooltip)
-               .on('mouseout', removeTooltip);
-    function drawTooltip(){
-        var div_3 = d3.select('#pieChart');
-        data.forEach(function(d){
-          d.value = new d.value;
-        });
-    }*/
     var div_ = d3.selectAll("#espacio_pie")
               .append("div")
               .attr("id", "tooltip2")
@@ -199,12 +225,6 @@ export class AerogeneradorPage {
           .style("position","absolute")
           .style("left", mouse_x + "px")
           .style("top", mouse_y + "px");
-
-    //  console.log(d.value);
-      /*
-      function drawTooltip(){
-          var div_3 = d3.select('#pieChart');
-      }*/
 
     });
   }

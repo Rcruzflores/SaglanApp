@@ -28,7 +28,7 @@
         </ion-card-header>
         <ion-card-content class="card-adjusment">
           <ion-col>
-                <div class="espacio_correcto" id={{index}}></div>
+              <grafico div_class="espacio_correcto"  div_id="{{index}}"></grafico>
           </ion-col>
         </ion-card-content>
       </ion-card>
@@ -37,8 +37,8 @@
             <ion-col>
               <div>
                 <p class="titulo_left">Velocidad viento</p>
-                <h1 class="dato primer_center"><span class="tipo numero_mwh">{{ km }}</span></h1>
-                <h6 class="color_sub ajuste_mwh">KM/h</h6>
+                <h1 class="dato primer_center"><span class="tipo numero_mwh">{{ ms }}</span></h1>
+                <h6 class="color_sub ajuste_mwh">m/s</h6>
               </div>
             </ion-col>
             <ion-col>
@@ -49,7 +49,7 @@
               </div>
             </ion-col>
         </ion-row>
-        <p class="titulo_left">Horas de Operación último día</p>
+        <p class="titulo_left">Horas de Operación últimos 30 días</p>
         <ion-row class="ajuste_espacio2">
             <ion-col>
               <div class="primer_center">

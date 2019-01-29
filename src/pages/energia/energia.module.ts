@@ -3,14 +3,15 @@ import { IonicPageModule } from 'ionic-angular';
 import { EnergiaPage } from './energia';
 
 
-import { GraficoComponent } from '../../components/grafico/grafico';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   declarations: [
-    EnergiaPage,GraficoComponent,
+    EnergiaPage,
   ],
   imports: [
     IonicPageModule.forChild(EnergiaPage),
+    ComponentsModule
   ],
 })
 export class EnergiaPageModule {}

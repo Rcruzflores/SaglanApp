@@ -15,7 +15,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TabsPage {
 
-  titulo: string = 'Parque Oaxaca, México';
+  param = this.navParams.data;
+  titulo: string = this.param['titulo_head'];
   tab1 = 'EnergiaPage';
   tab2 = 'AerogeneradorPage';
   constructor(public navCtrl: NavController, public navParams: NavParams) {

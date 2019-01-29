@@ -1,11 +1,10 @@
-
+import { ApiProvider } from './../providers/api/api';
 // Angular
 import { Component, ViewChild } from '@angular/core';
 
 // RxJS
 import { ReplaySubject } from "rxjs/ReplaySubject";
-import { ArrayObservable } from "rxjs/observable/ArrayObservable";
-
+import { Observable } from 'rxjs/Observable';
 // Ionic
 import { Nav, Platform, MenuController, AlertController } from 'ionic-angular';
 
@@ -17,6 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { SideMenuSettings } from './../shared/side-menu-content/models/side-menu-settings';
 import { SideMenuOption } from './../shared/side-menu-content/models/side-menu-option';
 import { SideMenuContentComponent } from './../shared/side-menu-content/side-menu-content.component';
+import { Events } from 'ionic-angular';
 
 @Component({
 	templateUrl: 'app.html'
@@ -27,7 +27,9 @@ export class MyApp {
 	// Get the instance to call the public methods
 	@ViewChild(SideMenuContentComponent) sideMenu: SideMenuContentComponent;
 
-	public rootPage: any = 'TabsPage';
+
+
+	public rootPage: any = 'LoginPage';
 
 	// Options to show in the SideMenuContentComponent
 	public options: Array<SideMenuOption>;
@@ -45,19 +47,28 @@ export class MyApp {
 				private statusBar: StatusBar,
 				private splashScreen: SplashScreen,
 				private alertCtrl: AlertController,
-				private menuCtrl: MenuController) {
-		this.initializeApp();
+				private menuCtrl: MenuController,
+				public apiProvider: ApiProvider,
+				public events: Events) {
+
+				/*if(this.apiProvider.usuario == []){
+						  this.rootPage = 'LoginPage';
+           } else {
+              this.rootPage = 'TabsPage';
+						};*/
+			  events.subscribe('user:login', () => {
+				  this.initializeApp();
+				});
 	}
 
 	initializeApp() {
 		this.platform.ready().then(() => {
 			this.statusBar.styleLightContent();
 			this.splashScreen.hide();
-
 			// Initialize some options
-			this.initializeOptions();
+			var usuarios = this.apiProvider.usuario;
+			this.initializeOptions(usuarios);
 		});
-
 		// Change the value for the batch every 5 seconds
 		setInterval(() => {
 			this.unreadCountObservable.next(Math.floor(Math.random() * 10) + 1);
@@ -65,7 +76,7 @@ export class MyApp {
 
 	}
 
-	private initializeOptions(): void {
+	private initializeOptions(usuarios): void {
 		this.options = new Array<SideMenuOption>();
 
 		// Load simple menu options
@@ -74,25 +85,30 @@ export class MyApp {
 			iconName: 'home',
 			displayText: 'Inicio',
 			component: 'TabsPage',
+			custom:{'titulo_head':'Portafolio','nivel':'portafolio'},
 		});
 
 
 		// Load options with nested items (with icons)
 		// -----------------------------------------------
 		this.options.push({
-      displayText: 'Aerogeneradores',
+      displayText: 'Parques',
       suboptions: [],
     });
 
-		for (let i = 1; i < 52; i++) {
+		var op = usuarios['general']['parques'];
+		for (let i = 0; i < op.length; i++) {
           this.options[1].suboptions.push({
-            displayText: 'Aerogenerador ' + i,
-            custom: {titulo:'Aerogenerador nº ' + i,indice: i},
-			      component: 'WtgPage',
+            displayText: op[i]['custom']['titulo'],
+            custom: op[i]['custom'],
+			      component: 'TabsPage',
             iconName: 'ios-stats-outline' //icon original 'list'
           });
         }
 
+		for (let i = 0; i < op.length; i++) {
+						this.options.push(op[i]);
+        }
 	}
 
 	public onOptionSelected(option: SideMenuOption): void {
@@ -107,6 +123,7 @@ export class MyApp {
 			} else {
 				// Get the params if any
 				const params = option.custom;
+				console.log(option);
 				// Redirect to the selected page
 				this.navCtrl.setRoot(option.component, params);
 			}
